@@ -14,5 +14,4 @@
  * limitations under the License.
  */
 
-export * from "./logging";
-export * from "./observation";
+export { TestLogger, TestLoggerFactory } from "./test-logger";
