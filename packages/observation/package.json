@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-port/observation",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "description": "OpenTelemetry observation support for NestJS Port",
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",

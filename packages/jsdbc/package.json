@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-port/jsdbc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "description": "JDBC integration",
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
