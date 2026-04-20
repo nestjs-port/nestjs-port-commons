@@ -1,5 +1,11 @@
 # @nestjs-port/core
 
+## 0.0.3
+
+### Patch Changes
+
+- remove unused files
+
 ## 0.0.2
 
 ### Patch Changes
