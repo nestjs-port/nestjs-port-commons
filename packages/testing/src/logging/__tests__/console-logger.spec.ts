@@ -14,23 +14,45 @@
  * limitations under the License.
  */
 
+import { LogLevel } from "@nestjs-port/core";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { TestLogger, TestLoggerFactory } from "../test-logger";
+import { ConsoleLogger, ConsoleLoggerFactory } from "../console-logger";
 
 afterEach(() => {
   vi.unstubAllEnvs();
   vi.restoreAllMocks();
 });
 
-describe("TestLogger", () => {
+describe("ConsoleLogger", () => {
   it("keeps logging disabled when LOG_LEVEL is unset", () => {
-    const logger = new TestLogger("TestLogger");
+    const logger = new ConsoleLogger("ConsoleLogger");
 
     expect(logger.isTraceEnabled()).toBe(false);
     expect(logger.isDebugEnabled()).toBe(false);
     expect(logger.isInfoEnabled()).toBe(false);
     expect(logger.isWarnEnabled()).toBe(false);
     expect(logger.isErrorEnabled()).toBe(false);
+  });
+
+  it("uses the constructor level when provided", () => {
+    const logger = new ConsoleLogger("ConsoleLogger", LogLevel.DEBUG);
+
+    expect(logger.isTraceEnabled()).toBe(false);
+    expect(logger.isDebugEnabled()).toBe(true);
+    expect(logger.isInfoEnabled()).toBe(true);
+    expect(logger.isWarnEnabled()).toBe(true);
+    expect(logger.isErrorEnabled()).toBe(true);
+  });
+
+  it("falls back to LOG_LEVEL when constructor level is not provided", () => {
+    vi.stubEnv("LOG_LEVEL", "DEBUG");
+    const logger = new ConsoleLogger("ConsoleLogger");
+
+    expect(logger.isTraceEnabled()).toBe(false);
+    expect(logger.isDebugEnabled()).toBe(true);
+    expect(logger.isInfoEnabled()).toBe(true);
+    expect(logger.isWarnEnabled()).toBe(true);
+    expect(logger.isErrorEnabled()).toBe(true);
   });
 
   it("logs messages at or above the configured level", () => {
@@ -40,19 +62,28 @@ describe("TestLogger", () => {
       .spyOn(console, "debug")
       .mockImplementation(() => void 0);
 
-    const logger = new TestLogger("TestLogger");
+    const logger = new ConsoleLogger("ConsoleLogger");
     logger.debug("hidden");
     logger.info("visible");
 
     expect(logger.isDebugEnabled()).toBe(false);
     expect(logger.isInfoEnabled()).toBe(true);
     expect(debugSpy).not.toHaveBeenCalled();
-    expect(infoSpy).toHaveBeenCalledWith("[TestLogger] visible");
+    expect(infoSpy).toHaveBeenCalledWith("[ConsoleLogger] visible");
   });
 
   it("creates named loggers through the factory", () => {
-    const logger = new TestLoggerFactory().getLogger("FactoryLogger");
+    const logger = new ConsoleLoggerFactory().getLogger("FactoryLogger");
 
     expect(logger.name).toBe("FactoryLogger");
+  });
+
+  it("passes the configured level through the factory", () => {
+    const logger = new ConsoleLoggerFactory(LogLevel.ERROR).getLogger(
+      "FactoryLogger",
+    );
+
+    expect(logger.isWarnEnabled()).toBe(false);
+    expect(logger.isErrorEnabled()).toBe(true);
   });
 });

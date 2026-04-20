@@ -14,24 +14,30 @@
  * limitations under the License.
  */
 
-import type { ILoggerFactory, Logger } from "@nestjs-port/core";
+import { type ILoggerFactory, type Logger, LogLevel } from "@nestjs-port/core";
 
-const LOG_LEVELS: Record<string, number> = {
-  TRACE: 0,
-  DEBUG: 1,
-  INFO: 2,
-  WARN: 3,
-  ERROR: 4,
+const ENV_LOG_LEVELS: Record<string, LogLevel> = {
+  TRACE: LogLevel.TRACE,
+  DEBUG: LogLevel.DEBUG,
+  INFO: LogLevel.INFO,
+  WARN: LogLevel.WARN,
+  ERROR: LogLevel.ERROR,
 };
 
-const isEnabled = (level: number): boolean => {
+const resolveMinimumLevelFromEnv = (): LogLevel | undefined => {
   const configuredLevel = process.env.LOG_LEVEL?.toUpperCase();
-  if (!configuredLevel || !(configuredLevel in LOG_LEVELS)) return false;
-  return level >= LOG_LEVELS[configuredLevel];
+  if (!configuredLevel || !(configuredLevel in ENV_LOG_LEVELS)) {
+    return undefined;
+  }
+
+  return ENV_LOG_LEVELS[configuredLevel];
 };
 
-export class TestLogger implements Logger {
-  constructor(public readonly name: string) {}
+export class ConsoleLogger implements Logger {
+  constructor(
+    public readonly name: string,
+    private readonly minimumLevel?: LogLevel,
+  ) {}
 
   trace(message: string, ...args: unknown[]): void {
     if (this.isTraceEnabled()) {
@@ -64,28 +70,35 @@ export class TestLogger implements Logger {
   }
 
   isTraceEnabled(): boolean {
-    return isEnabled(LOG_LEVELS.TRACE);
+    return this.isEnabled(LogLevel.TRACE);
   }
 
   isDebugEnabled(): boolean {
-    return isEnabled(LOG_LEVELS.DEBUG);
+    return this.isEnabled(LogLevel.DEBUG);
   }
 
   isInfoEnabled(): boolean {
-    return isEnabled(LOG_LEVELS.INFO);
+    return this.isEnabled(LogLevel.INFO);
   }
 
   isWarnEnabled(): boolean {
-    return isEnabled(LOG_LEVELS.WARN);
+    return this.isEnabled(LogLevel.WARN);
   }
 
   isErrorEnabled(): boolean {
-    return isEnabled(LOG_LEVELS.ERROR);
+    return this.isEnabled(LogLevel.ERROR);
+  }
+
+  private isEnabled(level: LogLevel): boolean {
+    const configuredLevel = this.minimumLevel ?? resolveMinimumLevelFromEnv();
+    return configuredLevel !== undefined && level >= configuredLevel;
   }
 }
 
-export class TestLoggerFactory implements ILoggerFactory {
+export class ConsoleLoggerFactory implements ILoggerFactory {
+  constructor(private readonly minimumLevel?: LogLevel) {}
+
   getLogger(name: string): Logger {
-    return new TestLogger(name);
+    return new ConsoleLogger(name, this.minimumLevel);
   }
 }

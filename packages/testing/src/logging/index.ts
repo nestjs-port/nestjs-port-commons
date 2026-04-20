@@ -14,4 +14,5 @@
  * limitations under the License.
  */
 
-export { TestLogger, TestLoggerFactory } from "./test-logger";
+export { ConsoleLogger, ConsoleLoggerFactory } from "./console-logger";
+export { RecordingLogger, RecordingLoggerFactory } from "./recording-logger";
