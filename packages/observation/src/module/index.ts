@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-present the original author or authors.
+ * Copyright 2026-present the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-export * from "./constant";
-export * from "./converter";
-export * from "./logging";
-export * from "./observation";
-export * from "./ordered.interface";
-export * from "./provider";
-export * from "./retry";
-export * from "./temporal";
-export * from "./util";
-export * from "./web";
+export {
+  ObservationModule,
+  ObservationModuleAsyncOptions,
+} from "./observation.module";
+export type { ObservationConfigurationProperties } from "./observation-configuration-properties";
+export { ObservationProviderPostProcessor } from "./observation-provider-post-processor";

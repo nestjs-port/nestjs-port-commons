@@ -1,18 +1,18 @@
 {
-  "name": "@nestjs-port/core",
-  "version": "0.0.0",
+  "name": "@nestjs-port/observation",
+  "version": "0.0.2",
   "private": false,
-  "description": "Shared primitives and utilities for NestJS Port",
+  "description": "OpenTelemetry observation support for NestJS Port",
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs-port/nestjs-port-commons",
-    "directory": "packages/core"
+    "directory": "packages/observation"
   },
   "keywords": [
     "nestjs",
     "ai",
-    "core"
+    "observation"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -30,11 +30,15 @@
     "clean": "rimraf dist",
     "test": "vitest run"
   },
-  "devDependencies": {
-    "rxjs": "^7.0.0"
-  },
   "peerDependencies": {
-    "rxjs": "^7.0.0"
+    "@nestjs-port/core": "*",
+    "@nestjs/common": "^10.0.0 || ^11.0.0",
+    "@opentelemetry/api": "^1.9.0"
+  },
+  "devDependencies": {
+    "@nestjs-port/core": "workspace:*",
+    "@nestjs/common": "^11.1.11",
+    "@opentelemetry/api": "^1.9.0"
   },
   "files": [
     "dist",

@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-export interface ToolCallingObservationProperties {
-  /**
-   * Whether to include the tool call content in the observations.
-   */
-  includeContent?: boolean;
-}
+export const METER_REGISTRY_TOKEN = Symbol.for("METER_REGISTRY_TOKEN");
+export const OBSERVATION_REGISTRY_TOKEN = Symbol.for(
+  "OBSERVATION_REGISTRY_TOKEN",
+);

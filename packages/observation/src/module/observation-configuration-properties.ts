@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-export * from "./constant";
-export * from "./converter";
-export * from "./logging";
-export * from "./observation";
-export * from "./ordered.interface";
-export * from "./provider";
-export * from "./retry";
-export * from "./temporal";
-export * from "./util";
-export * from "./web";
+import type { Meter, Tracer } from "@opentelemetry/api";
+import type { IgnoredMeters } from "../handlers";
+
+export interface ObservationConfigurationProperties {
+  meter?: Meter;
+  tracer?: Tracer;
+  ignoredMeters?: IgnoredMeters[];
+}

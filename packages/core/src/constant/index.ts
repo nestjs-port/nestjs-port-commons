@@ -14,13 +14,7 @@
  * limitations under the License.
  */
 
-export * from "./constant";
-export * from "./converter";
-export * from "./logging";
-export * from "./observation";
-export * from "./ordered.interface";
-export * from "./provider";
-export * from "./retry";
-export * from "./temporal";
-export * from "./util";
-export * from "./web";
+export {
+  METER_REGISTRY_TOKEN,
+  OBSERVATION_REGISTRY_TOKEN,
+} from "./tokens";
