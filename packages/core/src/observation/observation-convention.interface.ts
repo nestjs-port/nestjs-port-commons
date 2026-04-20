@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { KeyValues } from "../key-values";
+import type { KeyValues } from "./key-values";
 import type { ObservationContext } from "./observation-context";
 
 /**

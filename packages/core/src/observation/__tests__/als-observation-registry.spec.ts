@@ -15,15 +15,15 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { KeyValues } from "../../key-values";
 import type {
   ObservationConvention,
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "../../observation";
-import { ObservationContext, SimpleObservation } from "../../observation";
-import { AlsObservationRegistry } from "../als-observation-registry";
+} from "..";
+import { ObservationContext, SimpleObservation } from "..";
+import { KeyValues } from "../key-values";
+import { AlsObservationRegistry } from "../registry";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
   getName(): string {

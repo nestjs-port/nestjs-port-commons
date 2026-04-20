@@ -14,7 +14,18 @@
  * limitations under the License.
  */
 
-export { AiOperationMetadata } from "./ai-operation-metadata";
-export * from "./api";
-export * from "./conventions";
-export { ObservabilityHelper } from "./observability-helper";
+export { KeyValue } from "./key-value";
+export { KeyValues } from "./key-values";
+export * from "./meter";
+export { Observation } from "./observation";
+export { ObservationContext } from "./observation-context";
+export type { ObservationConvention } from "./observation-convention.interface";
+export { ObservationDocumentation } from "./observation-documentation";
+export type { ObservationFilter } from "./observation-filter.interface";
+export { ObservationFilters } from "./observation-filters";
+export type { ObservationHandler } from "./observation-handler.interface";
+export { ObservationHandlers } from "./observation-handlers";
+export type { ObservationScope } from "./observation-scope.interface";
+export * from "./registry";
+export { SimpleObservation } from "./simple-observation";
+export { SimpleObservationScope } from "./simple-observation-scope";

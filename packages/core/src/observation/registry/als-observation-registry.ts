@@ -21,7 +21,7 @@ import type {
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "../observation";
+} from "..";
 import type { ObservationRegistry } from "./observation-registry.interface";
 
 /**

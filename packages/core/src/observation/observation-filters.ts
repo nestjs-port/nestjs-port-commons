@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Ordered } from "../../../ordered.interface";
+import type { Ordered } from "../ordered.interface";
 import type { ObservationFilter } from "./observation-filter.interface";
 
 /**

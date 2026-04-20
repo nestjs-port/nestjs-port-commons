@@ -16,14 +16,14 @@
 
 import { firstValueFrom, map, of, throwError } from "rxjs";
 import { describe, expect, it } from "vitest";
-import { KeyValue } from "../../key-value";
-import { KeyValues } from "../../key-values";
-import { AlsObservationRegistry } from "../../registry";
+import { KeyValue } from "../key-value";
+import { KeyValues } from "../key-values";
 import { ObservationContext } from "../observation-context";
 import type { ObservationConvention } from "../observation-convention.interface";
 import type { ObservationFilter } from "../observation-filter.interface";
 import type { ObservationHandler } from "../observation-handler.interface";
 import type { ObservationScope } from "../observation-scope.interface";
+import { AlsObservationRegistry } from "../registry";
 import { SimpleObservation } from "../simple-observation";
 
 class TestConvention implements ObservationConvention<ObservationContext> {

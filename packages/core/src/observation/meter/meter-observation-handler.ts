@@ -14,8 +14,15 @@
  * limitations under the License.
  */
 
-export { KeyValue } from "./key-value";
-export { KeyValues } from "./key-values";
-export * from "./meter";
-export * from "./observation";
-export * from "./registry";
+import type { ObservationContext, ObservationHandler } from "..";
+
+/**
+ * Marker base class for meter handlers.
+ */
+export abstract class MeterObservationHandler<CTX extends ObservationContext>
+  implements ObservationHandler<CTX>
+{
+  supportsContext(_context: ObservationContext): _context is CTX {
+    return true;
+  }
+}

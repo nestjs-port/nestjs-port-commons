@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { ObservationRegistry } from "../registry";
 import type { Observation } from "./observation";
 import type { ObservationContext } from "./observation-context";
 import type { ObservationConvention } from "./observation-convention.interface";
+import type { ObservationRegistry } from "./registry";
 import { SimpleObservation } from "./simple-observation";
 
 type ObservationConventionConstructor<
