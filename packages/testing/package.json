@@ -1,18 +1,18 @@
 {
-  "name": "@nestjs-port/observation",
+  "name": "@nestjs-port/testing",
   "version": "0.0.0",
   "private": false,
-  "description": "OpenTelemetry observation support for NestJS Port",
+  "description": "Testing utilities for NestJS Port",
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs-port/nestjs-port-commons",
-    "directory": "packages/observation"
+    "directory": "packages/testing"
   },
   "keywords": [
     "nestjs",
     "ai",
-    "observation"
+    "testing"
   ],
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -31,14 +31,10 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@nestjs-port/core": "*",
-    "@nestjs/common": "^10.0.0 || ^11.0.0",
-    "@opentelemetry/api": "^1.9.0"
+    "@nestjs-port/core": "*"
   },
   "devDependencies": {
-    "@nestjs-port/core": "workspace:*",
-    "@nestjs/common": "^11.1.11",
-    "@opentelemetry/api": "^1.9.0"
+    "@nestjs-port/core": "workspace:*"
   },
   "files": [
     "dist",
