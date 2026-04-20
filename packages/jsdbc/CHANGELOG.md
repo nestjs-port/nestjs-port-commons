@@ -1,5 +1,11 @@
 # @nestjs-port/jsdbc
 
+## 0.0.3
+
+### Patch Changes
+
+- add import option in exports
+
 ## 0.0.2
 
 ### Patch Changes
