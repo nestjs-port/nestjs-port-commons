@@ -119,6 +119,9 @@ dist
 # Firebase cache directory
 .firebase/
 
+# Prisma generated client for jsdbc tests
+packages/jsdbc/src/prisma/__tests__/generated/
+
 # TernJS port file
 .tern-port
 
