@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-port/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "Shared primitives and utilities for NestJS Port",
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
