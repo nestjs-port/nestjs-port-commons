@@ -45,7 +45,8 @@
   },
   "scripts": {
     "build": "pnpm clean && tsc -p tsconfig.build.json",
-    "postinstall": "pnpm prisma:generate",
+    "pretypecheck": "pnpm prisma:generate",
+    "pretest": "pnpm prisma:generate",
     "prisma:generate": "DATABASE_URL=postgresql://jsdbc:jsdbc@localhost:5432/jsdbc_integration pnpm exec prisma generate --schema src/prisma/__tests__/schema.prisma",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
