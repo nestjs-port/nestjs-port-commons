@@ -91,8 +91,8 @@ describe("ZodRowMapper", () => {
       }),
     );
 
-    expect(() =>
-      mapper.mapRow({ CONVERSATION_ID: "not-a-number" }, 0),
-    ).toThrow();
+    expect(() => mapper.mapRow({ CONVERSATION_ID: "not-a-number" }, 0)).toThrow(
+      z.ZodError,
+    );
   });
 });

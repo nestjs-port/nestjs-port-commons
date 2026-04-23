@@ -24,9 +24,9 @@ import type { RowMapper } from "./row-mapper.interface";
 
 let plainToInstanceImplementation: typeof PlainToInstanceFunction | null = null;
 
-export class ClassTransformerRowMapper<T extends object>
-  implements RowMapper<T>
-{
+export class ClassTransformerRowMapper<
+  T extends object,
+> implements RowMapper<T> {
   constructor(
     private readonly targetType: ClassConstructor<T>,
     private readonly options?: ClassTransformOptions,
@@ -44,8 +44,9 @@ function getPlainToInstance(): typeof PlainToInstanceFunction {
 
   // Lazy load to avoid requiring class-transformer until this mapper is used.
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { plainToInstance } =
-    require("class-transformer") as typeof import("class-transformer");
+  const { plainToInstance } = require("class-transformer") as {
+    plainToInstance: typeof PlainToInstanceFunction;
+  };
   plainToInstanceImplementation = plainToInstance;
   return plainToInstanceImplementation;
 }

@@ -91,19 +91,21 @@ describe("RetryTemplate", () => {
       RetryException,
     );
 
+    let caught: unknown;
     try {
       await template.execute(retryable, "test2");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toMatch(
-        /Retry policy for operation '.+?' exhausted; aborting execution/,
-      );
-      expect(retryException.cause).toBe(exception);
-      expect(retryException.retryCount).toBe(0);
-      expect(retryException.exceptions).toEqual([exception]);
-      expect(retryException.lastException).toBe(exception);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toMatch(
+      /Retry policy for operation '.+?' exhausted; aborting execution/,
+    );
+    expect(retryException.cause).toBe(exception);
+    expect(retryException.retryCount).toBe(0);
+    expect(retryException.exceptions).toEqual([exception]);
+    expect(retryException.lastException).toBe(exception);
   });
 
   it("retryable with initial failure and zero retries fixed back off policy", async () => {
@@ -115,19 +117,21 @@ describe("RetryTemplate", () => {
       throw exception;
     };
 
+    let caught: unknown;
     try {
       await template.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toMatch(
-        /Retry policy for operation '.+?' exhausted; aborting execution/,
-      );
-      expect(retryException.cause).toBe(exception);
-      expect(retryException.retryCount).toBe(0);
-      expect(retryException.exceptions).toEqual([exception]);
-      expect(retryException.lastException).toBe(exception);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toMatch(
+      /Retry policy for operation '.+?' exhausted; aborting execution/,
+    );
+    expect(retryException.cause).toBe(exception);
+    expect(retryException.retryCount).toBe(0);
+    expect(retryException.exceptions).toEqual([exception]);
+    expect(retryException.lastException).toBe(exception);
   });
 
   it("retryable with initial failure and zero retries back off policy from builder", async () => {
@@ -142,19 +146,21 @@ describe("RetryTemplate", () => {
       throw exception;
     };
 
+    let caught: unknown;
     try {
       await template.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toMatch(
-        /Retry policy for operation '.+?' exhausted; aborting execution/,
-      );
-      expect(retryException.cause).toBe(exception);
-      expect(retryException.retryCount).toBe(0);
-      expect(retryException.exceptions).toEqual([exception]);
-      expect(retryException.lastException).toBe(exception);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toMatch(
+      /Retry policy for operation '.+?' exhausted; aborting execution/,
+    );
+    expect(retryException.cause).toBe(exception);
+    expect(retryException.retryCount).toBe(0);
+    expect(retryException.exceptions).toEqual([exception]);
+    expect(retryException.lastException).toBe(exception);
   });
 
   it("retryable with success after initial failures", async () => {
@@ -207,30 +213,32 @@ describe("RetryTemplate", () => {
     };
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toBe(
-        "Retry policy for operation 'test' exhausted; aborting execution",
-      );
-      expect(retryException.cause).toEqual(new CustomException("Boom 4"));
-
-      // Final onRetryableExecution should show failure with retryCount = 3
-      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-      expect(lastCall?.[3]).toMatchObject({
-        isSuccessful: false,
-        retryCount: 3,
-      });
-
-      expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalledWith(
-        retryPolicy,
-        retryable,
-        "test",
-        retryException,
-      );
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toBe(
+      "Retry policy for operation 'test' exhausted; aborting execution",
+    );
+    expect(retryException.cause).toEqual(new CustomException("Boom 4"));
+
+    // Final onRetryableExecution should show failure with retryCount = 3
+    const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+    expect(lastCall?.[3]).toMatchObject({
+      isSuccessful: false,
+      retryCount: 3,
+    });
+
+    expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalledWith(
+      retryPolicy,
+      retryable,
+      "test",
+      retryException,
+    );
     // 4 = 1 initial invocation + 3 retry attempts
     expect(invocationCount).toBe(4);
   });
@@ -254,25 +262,27 @@ describe("RetryTemplate", () => {
     retryTemplate.setRetryPolicy(multiPredicatePolicy);
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "always fails");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toBe(
-        "Retry policy for operation 'always fails' exhausted; aborting execution",
-      );
-      expect(retryException.cause).toBe(exception);
-
-      // Final onRetryableExecution should show failure with retryCount = 5
-      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-      expect(lastCall?.[3]).toMatchObject({
-        isSuccessful: false,
-        retryCount: 5,
-      });
-
-      expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toBe(
+      "Retry policy for operation 'always fails' exhausted; aborting execution",
+    );
+    expect(retryException.cause).toBe(exception);
+
+    // Final onRetryableExecution should show failure with retryCount = 5
+    const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+    expect(lastCall?.[3]).toMatchObject({
+      isSuccessful: false,
+      retryCount: 5,
+    });
+
+    expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
     // 6 = 1 initial invocation + 5 retry attempts
     expect(invocationCount).toBe(6);
   });
@@ -303,24 +313,26 @@ describe("RetryTemplate", () => {
     retryTemplate.setRetryPolicy(includesPolicy);
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toBe(
-        "Retry policy for operation 'test' exhausted; aborting execution",
-      );
-      expect(retryException.cause).toBeInstanceOf(IllegalStateError);
-      expect(retryException.retryCount).toBe(2);
-
-      // Check suppressed exceptions
-      const exceptions = retryException.exceptions;
-      expect(exceptions.length).toBe(3);
-      expect(exceptions[0]).toBeInstanceOf(FileNotFoundError);
-      expect(exceptions[1]).toBeInstanceOf(IOError);
-      expect(exceptions[2]).toBeInstanceOf(IllegalStateError);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toBe(
+      "Retry policy for operation 'test' exhausted; aborting execution",
+    );
+    expect(retryException.cause).toBeInstanceOf(IllegalStateError);
+    expect(retryException.retryCount).toBe(2);
+
+    // Check suppressed exceptions
+    const exceptions = retryException.exceptions;
+    expect(exceptions.length).toBe(3);
+    expect(exceptions[0]).toBeInstanceOf(FileNotFoundError);
+    expect(exceptions[1]).toBeInstanceOf(IOError);
+    expect(exceptions[2]).toBeInstanceOf(IllegalStateError);
     // 3 = 1 initial invocation + 2 retry attempts
     expect(invocationCount).toBe(3);
   });
@@ -351,24 +363,26 @@ describe("RetryTemplate", () => {
     };
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toBe(
-        "Retry policy for operation 'test' exhausted; aborting execution",
-      );
-      expect(retryException.cause).toBeInstanceOf(CustomFileNotFoundError);
-      expect(retryException.retryCount).toBe(2);
-
-      // Check suppressed exceptions
-      const exceptions = retryException.exceptions;
-      expect(exceptions.length).toBe(3);
-      expect(exceptions[0]).toBeInstanceOf(IOError);
-      expect(exceptions[1]).toBeInstanceOf(IllegalStateError);
-      expect(exceptions[2]).toBeInstanceOf(CustomFileNotFoundError);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toBe(
+      "Retry policy for operation 'test' exhausted; aborting execution",
+    );
+    expect(retryException.cause).toBeInstanceOf(CustomFileNotFoundError);
+    expect(retryException.retryCount).toBe(2);
+
+    // Check suppressed exceptions
+    const exceptions = retryException.exceptions;
+    expect(exceptions.length).toBe(3);
+    expect(exceptions[0]).toBeInstanceOf(IOError);
+    expect(exceptions[1]).toBeInstanceOf(IllegalStateError);
+    expect(exceptions[2]).toBeInstanceOf(CustomFileNotFoundError);
     // 3 = 1 initial invocation + 2 retry attempts
     expect(invocationCount).toBe(3);
   });
@@ -400,24 +414,26 @@ describe("RetryTemplate", () => {
     };
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.message).toBe(
-        "Retry policy for operation 'test' exhausted; aborting execution",
-      );
-      expect(retryException.cause).toBeInstanceOf(CustomFileNotFoundError);
-      expect(retryException.retryCount).toBe(2);
-
-      // Check suppressed exceptions
-      const exceptions = retryException.exceptions;
-      expect(exceptions.length).toBe(3);
-      expect(exceptions[0]).toBeInstanceOf(IOError);
-      expect(exceptions[1]).toBeInstanceOf(FileSystemError);
-      expect(exceptions[2]).toBeInstanceOf(CustomFileNotFoundError);
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.message).toBe(
+      "Retry policy for operation 'test' exhausted; aborting execution",
+    );
+    expect(retryException.cause).toBeInstanceOf(CustomFileNotFoundError);
+    expect(retryException.retryCount).toBe(2);
+
+    // Check suppressed exceptions
+    const exceptions = retryException.exceptions;
+    expect(exceptions.length).toBe(3);
+    expect(exceptions[0]).toBeInstanceOf(IOError);
+    expect(exceptions[1]).toBeInstanceOf(FileSystemError);
+    expect(exceptions[2]).toBeInstanceOf(CustomFileNotFoundError);
     // 3 = 1 initial invocation + 2 retry attempts
     expect(invocationCount).toBe(3);
   });
@@ -487,21 +503,23 @@ describe("RetryTemplate", () => {
     };
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.cause).toEqual(new CustomException("Boom 4"));
-
-      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-      expect(lastCall?.[3]).toMatchObject({
-        isSuccessful: false,
-        retryCount: 3,
-      });
-
-      expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.cause).toEqual(new CustomException("Boom 4"));
+
+    const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+    expect(lastCall?.[3]).toMatchObject({
+      isSuccessful: false,
+      retryCount: 3,
+    });
+
+    expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
     // 4 = 1 initial invocation + 3 retry attempts
     expect(invocationCount).toBe(4);
   });
@@ -565,21 +583,23 @@ describe("RetryTemplate", () => {
     };
 
     expect(invocationCount).toBe(0);
+    let caught: unknown;
     try {
       await retryTemplate.execute(retryable, "test");
     } catch (e) {
-      expect(e).toBeInstanceOf(RetryException);
-      const retryException = e as RetryException;
-      expect(retryException.cause).toEqual(new CustomException("Boom 4"));
-
-      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-      expect(lastCall?.[3]).toMatchObject({
-        isSuccessful: false,
-        retryCount: 3,
-      });
-
-      expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
+      caught = e;
     }
+    expect(caught).toBeInstanceOf(RetryException);
+    const retryException = caught as RetryException;
+    expect(retryException.cause).toEqual(new CustomException("Boom 4"));
+
+    const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+    expect(lastCall?.[3]).toMatchObject({
+      isSuccessful: false,
+      retryCount: 3,
+    });
+
+    expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalled();
     // 4 = 1 initial invocation + 3 retry attempts
     expect(invocationCount).toBe(4);
   });
@@ -632,24 +652,26 @@ describe("RetryTemplate", () => {
         throw exception;
       };
 
+      let caught: unknown;
       try {
         await template.execute(retryable, "test");
       } catch (e) {
-        expect(e).toBeInstanceOf(RetryException);
-        const retryException = e as RetryException;
-        expect(retryException.message).toMatch(
-          /Retry policy for operation '.+?' exhausted; aborting execution/,
-        );
-        expect(retryException.cause).toBe(exception);
-        expect(retryException.retryCount).toBe(0);
-
-        expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          retryException,
-        );
+        caught = e;
       }
+      expect(caught).toBeInstanceOf(RetryException);
+      const retryException = caught as RetryException;
+      expect(retryException.message).toMatch(
+        /Retry policy for operation '.+?' exhausted; aborting execution/,
+      );
+      expect(retryException.cause).toBe(exception);
+      expect(retryException.retryCount).toBe(0);
+
+      expect(mockListener.onRetryPolicyExhaustion).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        retryException,
+      );
     });
 
     it("retryable with timeout exceeded after initial failure", async () => {
@@ -668,23 +690,25 @@ describe("RetryTemplate", () => {
       };
 
       expect(invocationCount).toBe(0);
+      let caught: unknown;
       try {
         await template.execute(retryable, "test");
       } catch (e) {
-        expect(e).toBeInstanceOf(RetryException);
-        const retryException = e as RetryException;
-        expect(retryException.message).toMatch(
-          /Retry policy for operation '.+?' exceeded timeout \(10ms\); aborting execution/,
-        );
-        expect(retryException.cause).toEqual(new CustomException("Boom 1"));
-
-        expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          retryException,
-        );
+        caught = e;
       }
+      expect(caught).toBeInstanceOf(RetryException);
+      const retryException = caught as RetryException;
+      expect(retryException.message).toMatch(
+        /Retry policy for operation '.+?' exceeded timeout \(10ms\); aborting execution/,
+      );
+      expect(retryException.cause).toEqual(new CustomException("Boom 1"));
+
+      expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        retryException,
+      );
       expect(invocationCount).toBe(1);
     });
 
@@ -703,23 +727,25 @@ describe("RetryTemplate", () => {
       };
 
       expect(invocationCount).toBe(0);
+      let caught: unknown;
       try {
         await template.execute(retryable, "test");
       } catch (e) {
-        expect(e).toBeInstanceOf(RetryException);
-        const retryException = e as RetryException;
-        expect(retryException.message).toMatch(
-          /Retry policy for operation '.+?' would exceed timeout \(20ms\) due to pending sleep time \(100ms\); preemptively aborting execution/,
-        );
-        expect(retryException.cause).toEqual(new CustomException("Boom 1"));
-
-        expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          retryException,
-        );
+        caught = e;
       }
+      expect(caught).toBeInstanceOf(RetryException);
+      const retryException = caught as RetryException;
+      expect(retryException.message).toMatch(
+        /Retry policy for operation '.+?' would exceed timeout \(20ms\) due to pending sleep time \(100ms\); preemptively aborting execution/,
+      );
+      expect(retryException.cause).toEqual(new CustomException("Boom 1"));
+
+      expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        retryException,
+      );
       expect(invocationCount).toBe(1);
     });
 
@@ -741,37 +767,39 @@ describe("RetryTemplate", () => {
       };
 
       expect(invocationCount).toBe(0);
+      let caught: unknown;
       try {
         await template.execute(retryable, "test");
       } catch (e) {
-        expect(e).toBeInstanceOf(RetryException);
-        const retryException = e as RetryException;
-        expect(retryException.message).toMatch(
-          /Retry policy for operation '.+?' exceeded timeout \(20ms\); aborting execution/,
-        );
-        expect(retryException.cause).toEqual(new CustomException("Boom 2"));
-
-        expect(mockListener.beforeRetry).toHaveBeenCalled();
-        expect(mockListener.onRetryFailure).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          expect.objectContaining({ message: "Boom 2" }),
-        );
-
-        const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-        expect(lastCall?.[3]).toMatchObject({
-          isSuccessful: false,
-          retryCount: 1,
-        });
-
-        expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          retryException,
-        );
+        caught = e;
       }
+      expect(caught).toBeInstanceOf(RetryException);
+      const retryException = caught as RetryException;
+      expect(retryException.message).toMatch(
+        /Retry policy for operation '.+?' exceeded timeout \(20ms\); aborting execution/,
+      );
+      expect(retryException.cause).toEqual(new CustomException("Boom 2"));
+
+      expect(mockListener.beforeRetry).toHaveBeenCalled();
+      expect(mockListener.onRetryFailure).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        expect.objectContaining({ message: "Boom 2" }),
+      );
+
+      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+      expect(lastCall?.[3]).toMatchObject({
+        isSuccessful: false,
+        retryCount: 1,
+      });
+
+      expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        retryException,
+      );
       expect(invocationCount).toBe(2);
     });
 
@@ -793,29 +821,31 @@ describe("RetryTemplate", () => {
       };
 
       expect(invocationCount).toBe(0);
+      let caught: unknown;
       try {
         await template.execute(retryable, "test");
       } catch (e) {
-        expect(e).toBeInstanceOf(RetryException);
-        const retryException = e as RetryException;
-        expect(retryException.message).toMatch(
-          /Retry policy for operation '.+?' exceeded timeout \(20ms\); aborting execution/,
-        );
-        expect(retryException.cause).toEqual(new CustomException("Boom 3"));
-
-        const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
-        expect(lastCall?.[3]).toMatchObject({
-          isSuccessful: false,
-          retryCount: 2,
-        });
-
-        expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
-          timeoutPolicy,
-          retryable,
-          "test",
-          retryException,
-        );
+        caught = e;
       }
+      expect(caught).toBeInstanceOf(RetryException);
+      const retryException = caught as RetryException;
+      expect(retryException.message).toMatch(
+        /Retry policy for operation '.+?' exceeded timeout \(20ms\); aborting execution/,
+      );
+      expect(retryException.cause).toEqual(new CustomException("Boom 3"));
+
+      const lastCall = mockListener.onRetryableExecution.mock.calls.at(-1);
+      expect(lastCall?.[3]).toMatchObject({
+        isSuccessful: false,
+        retryCount: 2,
+      });
+
+      expect(mockListener.onRetryPolicyTimeout).toHaveBeenCalledWith(
+        timeoutPolicy,
+        retryable,
+        "test",
+        retryException,
+      );
       expect(invocationCount).toBe(3);
     });
   });
