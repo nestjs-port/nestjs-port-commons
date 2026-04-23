@@ -19,9 +19,9 @@ import type { ObservationContext, ObservationHandler } from "..";
 /**
  * Marker base class for meter handlers.
  */
-export abstract class MeterObservationHandler<CTX extends ObservationContext>
-  implements ObservationHandler<CTX>
-{
+export abstract class MeterObservationHandler<
+  CTX extends ObservationContext,
+> implements ObservationHandler<CTX> {
   supportsContext(_context: ObservationContext): _context is CTX {
     return true;
   }

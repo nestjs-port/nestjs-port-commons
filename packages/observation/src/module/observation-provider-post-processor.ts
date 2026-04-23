@@ -21,9 +21,7 @@ import type {
   ObservationRegistry,
 } from "@nestjs-port/core";
 
-export class ObservationProviderPostProcessor
-  implements OnApplicationBootstrap
-{
+export class ObservationProviderPostProcessor implements OnApplicationBootstrap {
   constructor(
     private readonly registry: ObservationRegistry,
     private readonly observationHandlers: ObservationHandlers,

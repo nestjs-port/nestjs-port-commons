@@ -42,11 +42,9 @@ type SingleColumnRowMapperOptions<Nullable extends boolean = true> = {
 export class SingleColumnRowMapper<
   T extends SingleColumnType = SingleColumnType,
   Nullable extends boolean = true,
-> implements
-    RowMapper<
-      Nullable extends true ? SingleColumnValue<T> | null : SingleColumnValue<T>
-    >
-{
+> implements RowMapper<
+  Nullable extends true ? SingleColumnValue<T> | null : SingleColumnValue<T>
+> {
   constructor(
     private readonly requiredType: T,
     private readonly options: SingleColumnRowMapperOptions<Nullable> = {},

@@ -22,9 +22,7 @@ import { SimpleObservation } from "./simple-observation";
 
 type ObservationConventionConstructor<
   CTX extends ObservationContext = ObservationContext,
-> = abstract new (
-  ...args: never[]
-) => ObservationConvention<CTX>;
+> = abstract new (...args: never[]) => ObservationConvention<CTX>;
 
 export abstract class ObservationDocumentation {
   /**

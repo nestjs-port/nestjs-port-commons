@@ -14,7 +14,4 @@
  * limitations under the License.
  */
 
-export {
-  METER_REGISTRY_TOKEN,
-  OBSERVATION_REGISTRY_TOKEN,
-} from "./tokens";
+export { METER_REGISTRY_TOKEN, OBSERVATION_REGISTRY_TOKEN } from "./tokens";

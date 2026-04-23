@@ -3,18 +3,22 @@
   "version": "0.0.3",
   "private": false,
   "description": "JDBC integration",
+  "keywords": [
+    "ai",
+    "jsdbc",
+    "nestjs"
+  ],
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs-port/nestjs-port-commons",
     "directory": "packages/jsdbc"
   },
-  "keywords": [
-    "nestjs",
-    "ai",
-    "jsdbc"
+  "files": [
+    "dist",
+    "CHANGELOG.md"
   ],
-  "license": "Apache-2.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -58,6 +62,29 @@
     "clean": "rimraf dist",
     "test": "vitest run"
   },
+  "devDependencies": {
+    "@mikro-orm/core": "^7.0.10",
+    "@mikro-orm/nestjs": "^7.0.1",
+    "@mikro-orm/postgresql": "^7.0.11",
+    "@nestjs-port/core": "workspace:*",
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/core": "^11.1.19",
+    "@nestjs/sequelize": "^11.0.1",
+    "@nestjs/testing": "^11.1.19",
+    "@nestjs/typeorm": "^11.0.1",
+    "@prisma/client": "^6.18.0",
+    "@testcontainers/postgresql": "^11.14.0",
+    "class-transformer": "^0.5.1",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.20.0",
+    "prisma": "^6.19.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "sequelize": "^6.37.7",
+    "testcontainers": "^11.14.0",
+    "typeorm": "^0.3.28",
+    "zod": "^4.3.6"
+  },
   "peerDependencies": {
     "@mikro-orm/core": "^7.0.0",
     "@nestjs-port/core": "workspace:^",
@@ -99,32 +126,5 @@
     "typeorm": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@mikro-orm/core": "^7.0.10",
-    "@mikro-orm/nestjs": "^7.0.1",
-    "@mikro-orm/postgresql": "^7.0.11",
-    "@nestjs-port/core": "workspace:*",
-    "@nestjs/common": "^11.1.11",
-    "@nestjs/core": "^11.1.19",
-    "@nestjs/sequelize": "^11.0.1",
-    "@nestjs/testing": "^11.1.19",
-    "@nestjs/typeorm": "^11.0.1",
-    "@prisma/client": "^6.18.0",
-    "@testcontainers/postgresql": "^11.14.0",
-    "class-transformer": "^0.5.1",
-    "drizzle-orm": "^0.45.2",
-    "pg": "^8.20.0",
-    "prisma": "^6.19.3",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2",
-    "sequelize": "^6.37.7",
-    "testcontainers": "^11.14.0",
-    "typeorm": "^0.3.28",
-    "zod": "^4.3.6"
-  },
-  "files": [
-    "dist",
-    "CHANGELOG.md"
-  ]
+  }
 }

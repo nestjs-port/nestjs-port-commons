@@ -26,9 +26,7 @@ import {
 /**
  * Handler that creates and manages OpenTelemetry spans from observations.
  */
-export class OtelTracingObservationHandler
-  implements ObservationHandler<ObservationContext>
-{
+export class OtelTracingObservationHandler implements ObservationHandler<ObservationContext> {
   private readonly spans = new WeakMap<ObservationContext, Span>();
   private readonly errorMarked = new WeakSet<ObservationContext>();
 

@@ -3,18 +3,22 @@
   "version": "0.0.3",
   "private": false,
   "description": "Shared primitives and utilities for NestJS Port",
+  "keywords": [
+    "ai",
+    "core",
+    "nestjs"
+  ],
   "homepage": "https://nestjs-port.github.io/nestjs-port-commons",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/nestjs-port/nestjs-port-commons",
     "directory": "packages/core"
   },
-  "keywords": [
-    "nestjs",
-    "ai",
-    "core"
+  "files": [
+    "dist",
+    "CHANGELOG.md"
   ],
-  "license": "Apache-2.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -35,9 +39,5 @@
   },
   "peerDependencies": {
     "rxjs": "^7.0.0"
-  },
-  "files": [
-    "dist",
-    "CHANGELOG.md"
-  ]
+  }
 }

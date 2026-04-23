@@ -161,9 +161,7 @@ export class TestObservationContext {
   }
 }
 
-class StoringObservationHandler
-  implements ObservationHandler<ObservationContext>
-{
+class StoringObservationHandler implements ObservationHandler<ObservationContext> {
   private readonly _contexts: TestObservationContext[] = [];
 
   get contexts(): readonly TestObservationContext[] {
@@ -194,9 +192,7 @@ class StoringObservationHandler
   }
 }
 
-class ObservationsLowCardinalityKeysValidatorHandler
-  implements ObservationHandler<ObservationContext>
-{
+class ObservationsLowCardinalityKeysValidatorHandler implements ObservationHandler<ObservationContext> {
   private readonly lowCardinalityKeysByName = new Map<string, Set<string>>();
 
   supportsContext(
