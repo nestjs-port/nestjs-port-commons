@@ -1,5 +1,11 @@
 # @nestjs-port/core
 
+## 0.0.4
+
+### Patch Changes
+
+- migrate from cjs to esm
+
 ## 0.0.3
 
 ### Patch Changes

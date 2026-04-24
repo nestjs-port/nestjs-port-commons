@@ -1,5 +1,13 @@
 # @nestjs-port/jsdbc
 
+## 0.0.4
+
+### Patch Changes
+
+- migrate from cjs to esm
+- Updated dependencies
+  - @nestjs-port/core@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
