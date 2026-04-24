@@ -27,7 +27,8 @@ import type { ObservationRegistry } from "./observation-registry.interface.js";
  * No-op implementation of ObservationRegistry.
  */
 export class NoopObservationRegistry implements ObservationRegistry {
-  static readonly INSTANCE = new NoopObservationRegistry();
+  static readonly INSTANCE: NoopObservationRegistry =
+    new NoopObservationRegistry();
 
   private constructor() {}
 

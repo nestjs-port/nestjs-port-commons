@@ -21,7 +21,6 @@
     "jsr:sync": "node scripts/sync-jsr.mjs",
     "jsr:check": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:check",
     "jsr:publish": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:publish",
-    "readme:sync": "bash scripts/sync-package-readmes.sh",
     "prepare": "husky"
   },
   "devDependencies": {

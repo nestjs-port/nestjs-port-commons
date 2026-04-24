@@ -156,14 +156,14 @@ Formatting and linting are handled by [`oxfmt`](https://oxc.rs) and [`oxlint`](h
 
 ### Release workflow
 
-Versioning and publishing are driven by [Changesets](https://github.com/changesets/changesets):
+Versioning and publishing are driven by [Changesets](https://github.com/changesets/changesets) for npm, and the package-local `jsr.json` files are kept in sync with the package versions:
 
 ```bash
 pnpm changeset              # describe your change
 pnpm changeset:status       # preview pending version bumps
 ```
 
-The `Changesets` GitHub Action opens a release PR and publishes to npm when merged to `main`.
+The `Changesets` GitHub Action opens a release PR and publishes to npm when merged to `main`. For JSR, publish from each package directory after the version bump has been applied.
 
 ## License
 

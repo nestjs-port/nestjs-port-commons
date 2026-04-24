@@ -63,7 +63,7 @@ export class TestObservationRegistry implements ObservationRegistry {
     return this.delegate.handlers;
   }
 
-  get filters() {
+  get filters(): readonly ObservationFilter[] {
     return this.delegate.filters;
   }
 
