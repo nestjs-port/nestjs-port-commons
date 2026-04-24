@@ -19,49 +19,49 @@ import { describe, expect, it } from "vitest";
 import { SingleColumnRowMapper } from "../single-column-row-mapper.js";
 
 describe("SingleColumnRowMapper", () => {
-  it("converts string values", () => {
+  it("converts string values", async () => {
     const mapper = new SingleColumnRowMapper(String);
 
-    expect(mapper.mapRow({ value: 123 }, 0)).toBe("123");
+    expect(await mapper.mapRow({ value: 123 }, 0)).toBe("123");
   });
 
-  it("converts number values", () => {
+  it("converts number values", async () => {
     const mapper = new SingleColumnRowMapper(Number);
 
-    expect(mapper.mapRow({ value: "1" }, 0)).toBe(1);
+    expect(await mapper.mapRow({ value: "1" }, 0)).toBe(1);
   });
 
-  it("converts boolean values", () => {
+  it("converts boolean values", async () => {
     const mapper = new SingleColumnRowMapper(Boolean);
 
-    expect(mapper.mapRow({ value: "true" }, 0)).toBe(true);
-    expect(mapper.mapRow({ value: "0" }, 0)).toBe(false);
+    expect(await mapper.mapRow({ value: "true" }, 0)).toBe(true);
+    expect(await mapper.mapRow({ value: "0" }, 0)).toBe(false);
   });
 
-  it("converts date values", () => {
+  it("converts date values", async () => {
     const mapper = new SingleColumnRowMapper(Date);
 
-    expect(mapper.mapRow({ value: "2026-04-13T00:00:00.000Z" }, 0)).toEqual(
-      new Date("2026-04-13T00:00:00.000Z"),
-    );
+    expect(
+      await mapper.mapRow({ value: "2026-04-13T00:00:00.000Z" }, 0),
+    ).toEqual(new Date("2026-04-13T00:00:00.000Z"));
   });
 
-  it("converts bigint values", () => {
+  it("converts bigint values", async () => {
     const mapper = new SingleColumnRowMapper(BigInt);
 
-    expect(mapper.mapRow({ value: "42" }, 0)).toBe(42n);
+    expect(await mapper.mapRow({ value: "42" }, 0)).toBe(42n);
   });
 
-  it("returns null values as null", () => {
+  it("returns null values as null", async () => {
     const mapper = new SingleColumnRowMapper(Number);
 
-    expect(mapper.mapRow({ value: null }, 0)).toBeNull();
+    expect(await mapper.mapRow({ value: null }, 0)).toBeNull();
   });
 
-  it("rejects null values when nullable is false", () => {
+  it("rejects null values when nullable is false", async () => {
     const mapper = new SingleColumnRowMapper(Number, { nullable: false });
 
-    expect(() => mapper.mapRow({ value: null }, 0)).toThrow(
+    await expect(mapper.mapRow({ value: null }, 0)).rejects.toThrow(
       "Expected a non-null single-column row at row number 0, but received null.",
     );
   });

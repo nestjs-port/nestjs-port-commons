@@ -15,8 +15,8 @@
  */
 
 import { Expose, Transform } from "class-transformer";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
 import { describe, expect, expectTypeOf, it, vi } from "vitest";
-import { z } from "zod";
 import {
   type Connection,
   DatabaseDialect,
@@ -28,8 +28,13 @@ import { ClassTransformerRowMapper } from "../class-transformer-row-mapper.js";
 import { JsdbcTemplate } from "../jsdbc-template.js";
 import type { RowMapper, RowMapperFunction } from "../row-mapper.interface.js";
 import { SingleColumnRowMapper } from "../single-column-row-mapper.js";
+import { StandardSchemaRowMapper } from "../standard-schema-row-mapper.js";
 import { TransactionSynchronizationManager } from "../transaction-synchronization-manager.js";
-import { ZodRowMapper } from "../zod-row-mapper.js";
+
+type ConversationRowShape = {
+  conversationId: number;
+  displayName: string;
+};
 
 class ConversationRow {
   @Expose({ name: "conversation_id" })
@@ -154,7 +159,7 @@ describe("JsdbcTemplate", () => {
   });
 
   describe("queryForList", () => {
-    it("infers row types from zod and single-column row mappers", async () => {
+    it("infers row types from standard schema and single-column row mappers", async () => {
       const dataSource = createDataSource(createConnection());
       const template = new JsdbcTemplate(dataSource);
 
@@ -172,31 +177,47 @@ describe("JsdbcTemplate", () => {
         string[]
       >();
 
+      const objectSchema: StandardSchemaV1<
+        Record<string, unknown>,
+        ConversationRowShape
+      > = {
+        "~standard": {
+          version: 1,
+          vendor: "test",
+          types: {
+            input: undefined as unknown as Record<string, unknown>,
+            output: undefined as unknown as ConversationRowShape,
+          },
+          validate(value: unknown) {
+            if (
+              value !== null &&
+              typeof value === "object" &&
+              "conversation_id" in value &&
+              "display_name" in value
+            ) {
+              return {
+                value: {
+                  conversationId: Number(
+                    (value as Record<string, unknown>).conversation_id,
+                  ),
+                  displayName: String(
+                    (value as Record<string, unknown>).display_name,
+                  ),
+                },
+              };
+            }
+
+            return { issues: [{ message: "expected row object" }] };
+          },
+        },
+      };
+
       const objectResult = template.queryForList(
         sql`select * from users`,
-        new ZodRowMapper(
-          z.object({
-            conversationId: z.number(),
-            displayName: z.string(),
-          }),
-        ),
+        new StandardSchemaRowMapper(objectSchema),
       );
       expectTypeOf(await objectResult).toEqualTypeOf<
         Array<{ conversationId: number; displayName: string }>
-      >();
-
-      const zodScalarResult = template.queryForList(
-        sql`select value from items`,
-        new ZodRowMapper(z.number()),
-      );
-      expectTypeOf(await zodScalarResult).toEqualTypeOf<number[]>();
-
-      const nullableZodScalarResult = template.queryForList(
-        sql`select value from items`,
-        new ZodRowMapper(z.number().nullable()),
-      );
-      expectTypeOf(await nullableZodScalarResult).toEqualTypeOf<
-        Array<number | null>
       >();
 
       const classTransformerResult = template.queryForList(
@@ -225,7 +246,7 @@ describe("JsdbcTemplate", () => {
       expect(close).toHaveBeenCalledTimes(1);
     });
 
-    it("maps single-column rows using a scalar zod mapper", async () => {
+    it("maps single-column rows using a scalar row mapper", async () => {
       const rows = [{ CONVERSATION_ID: "1" }];
       const close = vi.fn(async () => {});
       const query = vi.fn(async () => rows);
@@ -244,18 +265,40 @@ describe("JsdbcTemplate", () => {
       expect(close).toHaveBeenCalledTimes(1);
     });
 
-    it("maps rows using a zod row mapper", async () => {
+    it("maps rows using a standard schema row mapper", async () => {
       const rows = [{ CONVERSATION_ID: "1", DISPLAY_NAME: "Grace" }];
       const close = vi.fn(async () => {});
       const query = vi.fn(async () => rows);
       const connection = createConnection({ query, close });
       const dataSource = createDataSource(connection);
       const template = new JsdbcTemplate(dataSource);
-      const schema = z.object({
-        conversationId: z.coerce.number(),
-        displayName: z.string(),
-      });
-      const rowMapper = new ZodRowMapper(schema);
+      const rowMapper = new StandardSchemaRowMapper({
+        "~standard": {
+          version: 1,
+          vendor: "test",
+          validate(value: unknown) {
+            if (
+              value !== null &&
+              typeof value === "object" &&
+              "CONVERSATION_ID" in value &&
+              "DISPLAY_NAME" in value
+            ) {
+              return {
+                value: {
+                  conversationId: Number(
+                    (value as Record<string, unknown>).CONVERSATION_ID,
+                  ),
+                  displayName: String(
+                    (value as Record<string, unknown>).DISPLAY_NAME,
+                  ),
+                },
+              };
+            }
+
+            return { issues: [{ message: "expected row object" }] };
+          },
+        },
+      } as StandardSchemaV1);
 
       await expect(
         template.queryForList(sql`select * from users`, rowMapper),
@@ -322,7 +365,7 @@ describe("JsdbcTemplate", () => {
       const dataSource = createDataSource(connection);
       const template = new JsdbcTemplate(dataSource);
       const rowMapper: RowMapper<{ id: number; name: string }> = {
-        mapRow(row) {
+        async mapRow(row) {
           return {
             id: Number(row.id),
             name: String(row.name),
@@ -351,7 +394,7 @@ describe("JsdbcTemplate", () => {
       const dataSource = createDataSource(connection);
       const template = new JsdbcTemplate(dataSource);
       const rowMapper: RowMapper<{ id: number }> = {
-        mapRow() {
+        async mapRow() {
           throw new Error("boom");
         },
       };

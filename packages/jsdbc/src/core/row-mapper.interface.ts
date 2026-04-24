@@ -15,10 +15,10 @@
  */
 
 export interface RowMapper<T> {
-  mapRow(row: Record<string, unknown>, rowNum: number): T;
+  mapRow(row: Record<string, unknown>, rowNum: number): Promise<T>;
 }
 
 export type RowMapperFunction<T> = (
   row: Record<string, unknown>,
   rowNum: number,
-) => T;
+) => T | Promise<T>;

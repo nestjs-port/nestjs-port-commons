@@ -75,11 +75,13 @@ export class JsdbcTemplate {
       }
 
       if (typeof rowMapper === "function") {
-        return rows.map((row, rowNum) => rowMapper(row, rowNum)) as T[];
+        return Promise.all(rows.map((row, rowNum) => rowMapper(row, rowNum)));
       }
 
       if (isRowMapperInstance(rowMapper)) {
-        return rows.map((row, rowNum) => rowMapper.mapRow(row, rowNum)) as T[];
+        return Promise.all(
+          rows.map((row, rowNum) => rowMapper.mapRow(row, rowNum)),
+        );
       }
 
       return rows;

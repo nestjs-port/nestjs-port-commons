@@ -98,7 +98,10 @@ export class UserRepository {
 Row mappers mirror Spring's `RowMapper<T>` contract — pick by integration:
 
 ```ts
-import { ZodRowMapper, SingleColumnRowMapper } from "@nestjs-port/jsdbc";
+import {
+  StandardSchemaRowMapper,
+  SingleColumnRowMapper,
+} from "@nestjs-port/jsdbc";
 import { ClassTransformerRowMapper } from "@nestjs-port/jsdbc/class-transformer";
 ```
 

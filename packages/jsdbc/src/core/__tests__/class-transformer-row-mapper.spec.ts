@@ -29,12 +29,12 @@ class ConversationRow {
 }
 
 describe("ClassTransformerRowMapper", () => {
-  it("maps rows to class instances using class-transformer decorators", () => {
+  it("maps rows to class instances using class-transformer decorators", async () => {
     const mapper = new ClassTransformerRowMapper(ConversationRow, {
       excludeExtraneousValues: true,
     });
 
-    const result = mapper.mapRow(
+    const result = await mapper.mapRow(
       {
         conversation_id: "7",
         display_name: "Ada",

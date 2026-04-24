@@ -50,12 +50,12 @@ export class SingleColumnRowMapper<
     private readonly options: SingleColumnRowMapperOptions<Nullable> = {},
   ) {}
 
-  mapRow(
+  async mapRow(
     row: Record<string, unknown>,
     rowNum: number,
-  ): Nullable extends true
-    ? SingleColumnValue<T> | null
-    : SingleColumnValue<T> {
+  ): Promise<
+    Nullable extends true ? SingleColumnValue<T> | null : SingleColumnValue<T>
+  > {
     const columnCount = Object.keys(row).length;
     if (columnCount !== 1) {
       throw new Error(

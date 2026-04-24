@@ -14,23 +14,26 @@
  * limitations under the License.
  */
 
-import {
-  type ClassConstructor,
-  type ClassTransformOptions,
-  plainToInstance,
-} from "class-transformer";
+import type { StandardSchemaV1 } from "@standard-schema/spec";
+import { SchemaError } from "@standard-schema/utils";
 
 import type { RowMapper } from "./row-mapper.interface.js";
 
-export class ClassTransformerRowMapper<
-  T extends object,
-> implements RowMapper<T> {
-  constructor(
-    private readonly targetType: ClassConstructor<T>,
-    private readonly options?: ClassTransformOptions,
-  ) {}
+export class StandardSchemaRowMapper<
+  TSchema extends StandardSchemaV1,
+> implements RowMapper<StandardSchemaV1.InferOutput<TSchema>> {
+  constructor(private readonly schema: TSchema) {}
 
-  async mapRow(row: Record<string, unknown>, _rowNum: number): Promise<T> {
-    return plainToInstance(this.targetType, row, this.options);
+  async mapRow(
+    row: Record<string, unknown>,
+    _rowNum: number,
+  ): Promise<StandardSchemaV1.InferOutput<TSchema>> {
+    const result = await this.schema["~standard"].validate(row);
+
+    if (result.issues) {
+      throw new SchemaError(result.issues);
+    }
+
+    return result.value;
   }
 }
