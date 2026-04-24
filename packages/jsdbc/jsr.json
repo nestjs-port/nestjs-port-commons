@@ -1,0 +1,15 @@
+{
+  "name": "@nestjs-port/jsdbc",
+  "version": "0.0.4",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./class-transformer": "./src/class-transformer/index.ts",
+    "./typeorm": "./src/typeorm/index.ts",
+    "./mikroorm": "./src/mikroorm/index.ts",
+    "./sequelize": "./src/sequelize/index.ts",
+    "./prisma": "./src/prisma/index.ts",
+    "./drizzle": "./src/drizzle/index.ts"
+  },
+  "exclude": ["src/**/__tests__/**", "src/**/*.spec.ts", "src/**/*.it.spec.ts"]
+}

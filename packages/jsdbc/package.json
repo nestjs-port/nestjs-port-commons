@@ -59,7 +59,9 @@
     "prisma:generate": "DATABASE_URL=postgresql://jsdbc:jsdbc@localhost:5432/jsdbc_integration pnpm exec prisma generate --schema src/prisma/__tests__/schema.prisma",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
-    "test": "vitest run"
+    "test": "vitest run",
+    "jsr:check": "jsr publish --dry-run --allow-dirty",
+    "jsr:publish": "jsr publish"
   },
   "devDependencies": {
     "@mikro-orm/core": "^7.0.10",

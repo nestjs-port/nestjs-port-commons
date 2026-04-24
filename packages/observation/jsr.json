@@ -1,0 +1,12 @@
+{
+  "name": "@nestjs-port/observation",
+  "version": "0.0.2",
+  "license": "Apache-2.0",
+  "exports": "./src/index.ts",
+  "exclude": [
+    "AGENTS.md",
+    "src/**/__tests__/**",
+    "src/**/*.spec.ts",
+    "src/**/*.it.spec.ts"
+  ]
+}

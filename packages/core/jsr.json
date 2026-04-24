@@ -1,0 +1,7 @@
+{
+  "name": "@nestjs-port/core",
+  "version": "0.0.4",
+  "license": "Apache-2.0",
+  "exports": "./src/index.ts",
+  "exclude": ["src/**/__tests__/**", "src/**/*.spec.ts", "src/**/*.it.spec.ts"]
+}
