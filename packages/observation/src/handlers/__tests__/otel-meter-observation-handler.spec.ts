@@ -21,7 +21,7 @@ import type {
   Meter,
   UpDownCounter,
 } from "@opentelemetry/api";
-import { beforeEach, describe, expect, it } from "vitest";
+import { assert, beforeEach, describe, expect, it } from "vitest";
 import {
   IgnoredMeters,
   OtelMeterObservationHandler,
@@ -88,21 +88,21 @@ describe("OtelMeterObservationHandler", () => {
     handler.onStop(context);
 
     const activeCounter = meter.upDownCounters.get("test.observation.active");
-    expect(activeCounter).toBeDefined();
-    expect(activeCounter?.adds[0]).toEqual({
+    assert.isDefined(activeCounter);
+    expect(activeCounter.adds[0]).toEqual({
       value: 1,
       attributes: { low: "1" },
     });
-    expect(activeCounter?.adds[1]).toEqual({
+    expect(activeCounter.adds[1]).toEqual({
       value: -1,
       attributes: { low: "1" },
     });
 
     const timer = meter.histograms.get("test.observation");
-    expect(timer).toBeDefined();
-    expect(timer?.records).toHaveLength(1);
-    expect(timer?.records[0].value).toBeGreaterThanOrEqual(0);
-    expect(timer?.records[0].attributes).toEqual({
+    assert.isDefined(timer);
+    expect(timer.records).toHaveLength(1);
+    expect(timer.records[0].value).toBeGreaterThanOrEqual(0);
+    expect(timer.records[0].attributes).toEqual({
       low: "1",
       error: "none",
     });
@@ -120,20 +120,20 @@ describe("OtelMeterObservationHandler", () => {
     handler.onStop(context);
 
     const activeCounter = meter.upDownCounters.get("test.observation.active");
-    expect(activeCounter).toBeDefined();
-    expect(activeCounter?.adds[0]).toEqual({
+    assert.isDefined(activeCounter);
+    expect(activeCounter.adds[0]).toEqual({
       value: 1,
       attributes: { low: "1" },
     });
-    expect(activeCounter?.adds[1]).toEqual({
+    expect(activeCounter.adds[1]).toEqual({
       value: -1,
       attributes: { low: "1" },
     });
 
     const timer = meter.histograms.get("test.observation");
-    expect(timer).toBeDefined();
-    expect(timer?.records).toHaveLength(1);
-    expect(timer?.records[0].attributes).toEqual({
+    assert.isDefined(timer);
+    expect(timer.records).toHaveLength(1);
+    expect(timer.records[0].attributes).toEqual({
       low: "1",
       error: "SocketTimeoutException",
     });
@@ -153,9 +153,9 @@ describe("OtelMeterObservationHandler", () => {
     handler.onStop(context);
 
     const timer = meter.histograms.get("test.observation");
-    expect(timer).toBeDefined();
-    expect(timer?.records).toHaveLength(1);
-    expect(timer?.records[0].attributes).toEqual({
+    assert.isDefined(timer);
+    expect(timer.records).toHaveLength(1);
+    expect(timer.records[0].attributes).toEqual({
       low: "1",
       error: "none",
     });

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from "vitest";
+import { assert, describe, expect, it } from "vitest";
 import { ms } from "../../temporal/index.js";
 import { ExponentialBackOff, FixedBackOff, RetryPolicy } from "../index.js";
 
@@ -32,8 +32,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new TypeError())).toBe(true);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       expect(exponentialBackOff.maxAttempts).toBe(3);
       expect(exponentialBackOff.initialInterval).toBe(1000);
     });
@@ -51,8 +51,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new TypeError())).toBe(true);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(FixedBackOff);
-      const fixedBackOff = backOff as FixedBackOff;
+      assert.instanceOf(backOff, FixedBackOff);
+      const fixedBackOff = backOff;
       expect(fixedBackOff.maxAttempts).toBe(5);
       expect(fixedBackOff.interval).toBe(1000);
     });
@@ -86,8 +86,8 @@ describe("RetryPolicy", () => {
       const policy = RetryPolicy.builder().maxRetries(5).build();
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       expect(exponentialBackOff.maxAttempts).toBe(5);
       expect(exponentialBackOff.initialInterval).toBe(1000);
 
@@ -124,8 +124,8 @@ describe("RetryPolicy", () => {
       const policy = RetryPolicy.builder().delay(ms(42)).build();
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       expect(exponentialBackOff.initialInterval).toBe(42);
       expect(exponentialBackOff.maxAttempts).toBe(3);
 
@@ -148,8 +148,8 @@ describe("RetryPolicy", () => {
       const policy = RetryPolicy.builder().jitter(ms(42)).build();
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       hasDefaultMaxAttemptsAndDelay(exponentialBackOff);
       expect(exponentialBackOff.jitter).toBe(42);
 
@@ -182,8 +182,8 @@ describe("RetryPolicy", () => {
       const policy = RetryPolicy.builder().multiplier(1.5).build();
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       hasDefaultMaxAttemptsAndDelay(exponentialBackOff);
       expect(exponentialBackOff.multiplier).toBe(1.5);
 
@@ -206,8 +206,8 @@ describe("RetryPolicy", () => {
       const policy = RetryPolicy.builder().maxDelay(ms(42)).build();
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      const exponentialBackOff = backOff as ExponentialBackOff;
+      assert.instanceOf(backOff, ExponentialBackOff);
+      const exponentialBackOff = backOff;
       hasDefaultMaxAttemptsAndDelay(exponentialBackOff);
       expect(exponentialBackOff.maxInterval).toBe(42);
 
@@ -235,8 +235,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new FileSystemError("fs"))).toBe(false);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
 
     it("includes with subtype matching", () => {
@@ -249,8 +249,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new AssertionError())).toBe(false);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
 
     it("excludes", () => {
@@ -268,8 +268,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new FileSystemError("fs"))).toBe(true);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
 
     it("excludes with subtype matching", () => {
@@ -283,8 +283,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new AssertionError())).toBe(true);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
 
     it("predicate", () => {
@@ -299,8 +299,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new SyntaxError())).toBe(false);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
 
     it("predicates combined", () => {
@@ -319,8 +319,8 @@ describe("RetryPolicy", () => {
       expect(policy.shouldRetry(new SyntaxError())).toBe(false);
 
       const backOff = policy.backOff;
-      expect(backOff).toBeInstanceOf(ExponentialBackOff);
-      hasDefaultMaxAttemptsAndDelay(backOff as ExponentialBackOff);
+      assert.instanceOf(backOff, ExponentialBackOff);
+      hasDefaultMaxAttemptsAndDelay(backOff);
     });
   });
 });

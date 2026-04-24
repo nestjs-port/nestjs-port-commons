@@ -16,7 +16,7 @@
 
 import { MeterId, Tag } from "@nestjs-port/core";
 import type { Attributes, Counter, Meter } from "@opentelemetry/api";
-import { beforeEach, describe, expect, it } from "vitest";
+import { assert, beforeEach, describe, expect, it } from "vitest";
 import { OtelMeterRegistry } from "../otel-meter-registry.js";
 
 type CounterAdd = { value: number; attributes?: Attributes };
@@ -65,9 +65,9 @@ describe("OtelMeterRegistry", () => {
     counter.increment(42);
 
     const otelCounter = fakeMeter.counters.get("test.counter");
-    expect(otelCounter).toBeDefined();
-    expect(otelCounter?.adds).toHaveLength(1);
-    expect(otelCounter?.adds[0]).toEqual({
+    assert.isDefined(otelCounter);
+    expect(otelCounter.adds).toHaveLength(1);
+    expect(otelCounter.adds[0]).toEqual({
       value: 42,
       attributes: { key1: "value1" },
     });

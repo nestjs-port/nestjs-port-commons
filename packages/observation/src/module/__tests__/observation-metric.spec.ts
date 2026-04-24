@@ -30,7 +30,7 @@ import {
   type ObservationConvention,
   SimpleObservation,
 } from "@nestjs-port/core";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, assert, describe, expect, it } from "vitest";
 import { ObservationModule } from "../../index.js";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
@@ -124,14 +124,14 @@ describe("ObservationModule metrics", () => {
       (metric) => metric.descriptor.name === "test.observation.active",
     );
 
-    expect(durationMetric).toBeDefined();
-    expect(activeMetric).toBeDefined();
+    assert.isDefined(durationMetric);
+    assert.isDefined(activeMetric);
 
-    expect(durationMetric?.dataPoints[0]?.attributes).toMatchObject({
+    expect(durationMetric.dataPoints[0]?.attributes).toMatchObject({
       low: "1",
       error: "none",
     });
-    expect(activeMetric?.dataPoints[0]?.attributes).toMatchObject({
+    expect(activeMetric.dataPoints[0]?.attributes).toMatchObject({
       low: "1",
     });
   });
