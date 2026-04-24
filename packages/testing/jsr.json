@@ -3,10 +3,8 @@
   "version": "0.0.3",
   "license": "Apache-2.0",
   "exports": "./src/index.ts",
-  "exclude": [
-    "AGENTS.md",
-    "src/**/__tests__/**",
-    "src/**/*.spec.ts",
-    "src/**/*.it.spec.ts"
-  ]
+  "publish": {
+    "include": ["CHANGELOG.md", "README.md", "src/**/*.ts"],
+    "exclude": ["AGENTS.md", "src/**/__tests__/**", "tsconfig.json"]
+  }
 }

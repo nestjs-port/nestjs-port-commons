@@ -11,5 +11,8 @@
     "./prisma": "./src/prisma/index.ts",
     "./drizzle": "./src/drizzle/index.ts"
   },
-  "exclude": ["src/**/__tests__/**", "src/**/*.spec.ts", "src/**/*.it.spec.ts"]
+  "publish": {
+    "include": ["CHANGELOG.md", "README.md", "src/**/*.ts"],
+    "exclude": ["src/**/__tests__/**", "tsconfig.json"]
+  }
 }

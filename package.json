@@ -21,20 +21,21 @@
     "jsr:sync": "node scripts/sync-jsr.mjs",
     "jsr:check": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:check",
     "jsr:publish": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:publish",
+    "readme:sync": "bash scripts/sync-package-readmes.sh",
     "prepare": "husky"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
-    "@types/node": "^25.5.0",
+    "@changesets/cli": "^2.31.0",
+    "@types/node": "^25.6.0",
     "husky": "^9.1.7",
     "jsr": "^0.14.3",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.4.0",
     "oxfmt": "^0.46.0",
     "oxlint": "^1.61.0",
     "rimraf": "^6.1.3",
-    "turbo": "^2.8.9",
-    "typescript": "^6.0.2",
-    "vitest": "^4.0.16"
+    "turbo": "^2.9.6",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   },
   "lint-staged": {
     "*": "oxfmt --write --no-error-on-unmatched-pattern",
