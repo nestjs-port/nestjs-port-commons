@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import type { Driver } from "typeorm/driver/Driver";
-import type { QueryRunner } from "typeorm/query-runner/QueryRunner";
-import { buildSqlTag } from "typeorm/util/SqlTagUtils";
+import type { Driver } from "typeorm/driver/Driver.js";
+import type { QueryRunner } from "typeorm/query-runner/QueryRunner.js";
+import { buildSqlTag } from "typeorm/util/SqlTagUtils.js";
 
-import type { Connection, SqlFragment } from "../api";
+import type { Connection, SqlFragment } from "../api/index.js";
 
 export class TypeOrmConnection implements Connection {
   #closed = false;

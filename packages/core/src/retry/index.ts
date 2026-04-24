@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-export { type BackOff, BackOffExecution } from "./back-off.interface";
-export { DefaultRetryPolicy } from "./default-retry-policy";
-export { ExponentialBackOff } from "./exponential-back-off";
-export { FixedBackOff } from "./fixed-back-off";
-export { RetryException } from "./retry-exception";
-export type { RetryListener } from "./retry-listener.interface";
-export type { RetryOperations } from "./retry-operations.interface";
-export { RetryPolicy, RetryPolicyBuilder } from "./retry-policy";
-export { RetryState } from "./retry-state";
-export { RetryTemplate } from "./retry-template";
-export type { Retryable } from "./retryable.interface";
-export * from "./support";
+export { type BackOff, BackOffExecution } from "./back-off.interface.js";
+export { DefaultRetryPolicy } from "./default-retry-policy.js";
+export { ExponentialBackOff } from "./exponential-back-off.js";
+export { FixedBackOff } from "./fixed-back-off.js";
+export { RetryException } from "./retry-exception.js";
+export type { RetryListener } from "./retry-listener.interface.js";
+export type { RetryOperations } from "./retry-operations.interface.js";
+export { RetryPolicy, RetryPolicyBuilder } from "./retry-policy.js";
+export { RetryState } from "./retry-state.js";
+export { RetryTemplate } from "./retry-template.js";
+export type { Retryable } from "./retryable.interface.js";
+export * from "./support/index.js";

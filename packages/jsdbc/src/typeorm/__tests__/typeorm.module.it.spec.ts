@@ -23,9 +23,9 @@ import {
   type StartedPostgreSqlContainer,
 } from "@testcontainers/postgresql";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api";
-import type { JsdbcTemplate } from "../../core";
-import { TypeOrmJsdbcModule } from "../typeorm.module";
+import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api/index.js";
+import type { JsdbcTemplate } from "../../core/index.js";
+import { TypeOrmJsdbcModule } from "../typeorm.module.js";
 
 describe("TypeOrmJsdbcModuleIT", () => {
   let postgresContainer!: StartedPostgreSqlContainer;

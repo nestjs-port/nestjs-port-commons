@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { Observation } from "./observation";
-import type { ObservationContext } from "./observation-context";
-import type { ObservationScope } from "./observation-scope.interface";
-import type { ObservationRegistry } from "./registry";
+import type { Observation } from "./observation.js";
+import type { ObservationContext } from "./observation-context.js";
+import type { ObservationScope } from "./observation-scope.interface.js";
+import type { ObservationRegistry } from "./registry/index.js";
 
 /**
  * Simple implementation of ObservationScope that manages a stack of scopes.

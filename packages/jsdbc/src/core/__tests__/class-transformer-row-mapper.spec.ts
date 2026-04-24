@@ -17,7 +17,7 @@
 import { Expose, Transform } from "class-transformer";
 import { describe, expect, it } from "vitest";
 
-import { ClassTransformerRowMapper } from "../class-transformer-row-mapper";
+import { ClassTransformerRowMapper } from "../class-transformer-row-mapper.js";
 
 class ConversationRow {
   @Expose({ name: "conversation_id" })

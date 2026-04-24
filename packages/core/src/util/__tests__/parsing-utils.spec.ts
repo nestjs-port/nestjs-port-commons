@@ -15,7 +15,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { ParsingUtils } from "../parsing-utils";
+import { ParsingUtils } from "../parsing-utils.js";
 
 describe("ParsingUtils", () => {
   describe("splitCamelCase", () => {

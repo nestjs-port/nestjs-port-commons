@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export { LogLevel } from "./log-level";
-export type { Logger } from "./logger.interface";
-export { LoggerFactory } from "./logger-factory";
-export type { ILoggerFactory } from "./logger-factory.interface";
+export { LogLevel } from "./log-level.js";
+export type { Logger } from "./logger.interface.js";
+export { LoggerFactory } from "./logger-factory.js";
+export type { ILoggerFactory } from "./logger-factory.interface.js";

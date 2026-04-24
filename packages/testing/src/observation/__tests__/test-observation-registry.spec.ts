@@ -25,7 +25,7 @@ import { describe, expect, it } from "vitest";
 import {
   TestObservationRegistry,
   TestObservationRegistryCapability,
-} from "../test-observation-registry";
+} from "../test-observation-registry.js";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
   constructor(private readonly lowCardinality: KeyValues = KeyValues.empty()) {}

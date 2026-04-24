@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export type { ProviderInstanceExplorer } from "./provider-instance-explorer.interface";
+export type { ProviderInstanceExplorer } from "./provider-instance-explorer.interface.js";

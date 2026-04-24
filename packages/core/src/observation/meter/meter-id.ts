@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Tag } from "./tag";
+import type { Tag } from "./tag.js";
 
 /**
  * Immutable identifier for a meter.

@@ -22,13 +22,17 @@ import type {
 } from "@nestjs/common";
 import { Module } from "@nestjs/common";
 
-import { type DataSource, JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
-import type { PrismaClientLike, PrismaRuntime } from "./prisma";
+import {
+  type DataSource,
+  JSDBC_DATA_SOURCE,
+  JSDBC_TEMPLATE,
+} from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
+import type { PrismaClientLike, PrismaRuntime } from "./prisma.js";
 import {
   PrismaDataSource,
   type PrismaJsdbcOptions,
-} from "./prisma-data-source";
+} from "./prisma-data-source.js";
 
 export interface PrismaJsdbcModuleOptions extends PrismaJsdbcOptions {
   global?: boolean;

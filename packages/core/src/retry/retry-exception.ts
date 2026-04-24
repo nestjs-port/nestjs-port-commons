@@ -16,7 +16,7 @@
 
 import assert from "node:assert/strict";
 
-import { RetryState } from "./retry-state";
+import { RetryState } from "./retry-state.js";
 
 /**
  * Exception thrown when a {@link RetryPolicy} has been exhausted or interrupted.

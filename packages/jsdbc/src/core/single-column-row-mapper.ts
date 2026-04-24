@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { RowMapper } from "./row-mapper.interface";
+import type { RowMapper } from "./row-mapper.interface.js";
 
 type SingleColumnType =
   | StringConstructor

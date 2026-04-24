@@ -16,8 +16,8 @@
 
 import { describe, expect, it } from "vitest";
 
-import { DatabaseDialect } from "../../api";
-import { PrismaDataSource } from "../prisma-data-source";
+import { DatabaseDialect } from "../../api/index.js";
+import { PrismaDataSource } from "../prisma-data-source.js";
 
 describe("PrismaDataSource", () => {
   it.each([

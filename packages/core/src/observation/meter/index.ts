@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-export { Counter } from "./counter";
-export { MeterId } from "./meter-id";
-export { MeterObservationHandler } from "./meter-observation-handler";
-export type { MeterRegistry } from "./meter-registry.interface";
-export { Tag } from "./tag";
+export { Counter } from "./counter.js";
+export { MeterId } from "./meter-id.js";
+export { MeterObservationHandler } from "./meter-observation-handler.js";
+export type { MeterRegistry } from "./meter-registry.interface.js";
+export { Tag } from "./tag.js";

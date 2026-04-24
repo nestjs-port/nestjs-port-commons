@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { ObservationContext } from "./observation-context";
+import type { ObservationContext } from "./observation-context.js";
 
 /**
  * Allows mutating the observation context before handlers process it on stop.

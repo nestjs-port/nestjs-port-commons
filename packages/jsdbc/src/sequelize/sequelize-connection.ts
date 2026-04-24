@@ -16,7 +16,7 @@
 
 import type { Sequelize } from "sequelize";
 import { QueryTypes, type Transaction } from "sequelize";
-import type { Connection, SqlFragment } from "../api";
+import type { Connection, SqlFragment } from "../api/index.js";
 
 function buildSequelizeSqlTag(fragment: SqlFragment): {
   query: string;

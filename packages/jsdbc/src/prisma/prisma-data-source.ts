@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import { type Connection, DatabaseDialect, type DataSource } from "../api";
-import { TransactionSynchronizationManager } from "../core";
+import {
+  type Connection,
+  DatabaseDialect,
+  type DataSource,
+} from "../api/index.js";
+import { TransactionSynchronizationManager } from "../core/index.js";
 import type {
   PrismaClientLike,
   PrismaDialectInfo,
   PrismaRuntime,
-} from "./prisma";
-import { PrismaConnection } from "./prisma-connection";
+} from "./prisma.js";
+import { PrismaConnection } from "./prisma-connection.js";
 
 export interface PrismaJsdbcOptions {
   dialect?: DatabaseDialect;

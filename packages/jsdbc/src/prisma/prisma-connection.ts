@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Connection, SqlFragment } from "../api";
-import type { PrismaRawClient, PrismaRuntime, PrismaSql } from "./prisma";
+import type { Connection, SqlFragment } from "../api/index.js";
+import type { PrismaRawClient, PrismaRuntime, PrismaSql } from "./prisma.js";
 
 export class PrismaConnection implements Connection {
   #closed = false;

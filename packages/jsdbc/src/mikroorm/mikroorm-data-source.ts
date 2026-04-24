@@ -15,9 +15,13 @@
  */
 
 import type { MikroORM, Platform } from "@mikro-orm/core";
-import { type Connection, DatabaseDialect, type DataSource } from "../api";
-import { TransactionSynchronizationManager } from "../core";
-import { MikroOrmConnection } from "./mikroorm-connection";
+import {
+  type Connection,
+  DatabaseDialect,
+  type DataSource,
+} from "../api/index.js";
+import { TransactionSynchronizationManager } from "../core/index.js";
+import { MikroOrmConnection } from "./mikroorm-connection.js";
 
 type MikroOrmExecutor = MikroORM["em"] & {
   execute(

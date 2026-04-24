@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-export { KeyValue } from "./key-value";
-export { KeyValues } from "./key-values";
-export * from "./meter";
-export { Observation } from "./observation";
-export { ObservationContext } from "./observation-context";
-export type { ObservationConvention } from "./observation-convention.interface";
-export { ObservationDocumentation } from "./observation-documentation";
-export type { ObservationFilter } from "./observation-filter.interface";
-export { ObservationFilters } from "./observation-filters";
-export type { ObservationHandler } from "./observation-handler.interface";
-export { ObservationHandlers } from "./observation-handlers";
-export type { ObservationScope } from "./observation-scope.interface";
-export * from "./registry";
-export { SimpleObservation } from "./simple-observation";
-export { SimpleObservationScope } from "./simple-observation-scope";
+export { KeyValue } from "./key-value.js";
+export { KeyValues } from "./key-values.js";
+export * from "./meter/index.js";
+export { Observation } from "./observation.js";
+export { ObservationContext } from "./observation-context.js";
+export type { ObservationConvention } from "./observation-convention.interface.js";
+export { ObservationDocumentation } from "./observation-documentation.js";
+export type { ObservationFilter } from "./observation-filter.interface.js";
+export { ObservationFilters } from "./observation-filters.js";
+export type { ObservationHandler } from "./observation-handler.interface.js";
+export { ObservationHandlers } from "./observation-handlers.js";
+export type { ObservationScope } from "./observation-scope.interface.js";
+export * from "./registry/index.js";
+export { SimpleObservation } from "./simple-observation.js";
+export { SimpleObservationScope } from "./simple-observation-scope.js";

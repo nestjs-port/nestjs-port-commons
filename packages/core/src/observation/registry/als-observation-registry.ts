@@ -21,8 +21,8 @@ import type {
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "..";
-import type { ObservationRegistry } from "./observation-registry.interface";
+} from "../index.js";
+import type { ObservationRegistry } from "./observation-registry.interface.js";
 
 /**
  * Observation registry backed by AsyncLocalStorage.

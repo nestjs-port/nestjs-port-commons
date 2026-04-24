@@ -16,13 +16,13 @@
 
 import assert from "node:assert/strict";
 
-import { LoggerFactory } from "../logging";
-import { BackOffExecution } from "./back-off.interface";
-import { RetryException } from "./retry-exception";
-import type { RetryListener } from "./retry-listener.interface";
-import { RetryPolicy } from "./retry-policy";
-import { RetryState } from "./retry-state";
-import type { Retryable } from "./retryable.interface";
+import { LoggerFactory } from "../logging/index.js";
+import { BackOffExecution } from "./back-off.interface.js";
+import { RetryException } from "./retry-exception.js";
+import type { RetryListener } from "./retry-listener.interface.js";
+import { RetryPolicy } from "./retry-policy.js";
+import { RetryState } from "./retry-state.js";
+import type { Retryable } from "./retryable.interface.js";
 
 /**
  * Private mutable state holder during retry execution.

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { KeyValue } from "./key-value";
-import { KeyValues } from "./key-values";
+import type { KeyValue } from "./key-value.js";
+import { KeyValues } from "./key-values.js";
 
 /**
  * Context object that carries information throughout the observation lifecycle.

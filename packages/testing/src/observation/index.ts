@@ -19,4 +19,4 @@ export {
   TestObservationRegistry,
   TestObservationRegistryBuilder,
   TestObservationRegistryCapability,
-} from "./test-observation-registry";
+} from "./test-observation-registry.js";

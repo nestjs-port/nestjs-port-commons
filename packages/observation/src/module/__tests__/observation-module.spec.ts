@@ -28,7 +28,7 @@ import {
   ObservationModule,
   ObservationProviderPostProcessor,
   OtelMeterRegistry,
-} from "../../index";
+} from "../../index.js";
 
 const OBSERVATION_CONFIG_TOKEN = Symbol("OBSERVATION_CONFIG_TOKEN");
 

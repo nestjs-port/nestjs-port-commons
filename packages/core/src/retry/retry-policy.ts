@@ -15,11 +15,11 @@
  */
 
 import assert from "node:assert/strict";
-import { type Milliseconds, ms } from "../temporal";
-import type { BackOff } from "./back-off.interface";
-import { DefaultRetryPolicy } from "./default-retry-policy";
-import { ExponentialBackOff } from "./exponential-back-off";
-import { FixedBackOff } from "./fixed-back-off";
+import { type Milliseconds, ms } from "../temporal/index.js";
+import type { BackOff } from "./back-off.interface.js";
+import { DefaultRetryPolicy } from "./default-retry-policy.js";
+import { ExponentialBackOff } from "./exponential-back-off.js";
+import { FixedBackOff } from "./fixed-back-off.js";
 
 /**
  * Strategy interface to define a retry policy.

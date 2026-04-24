@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Ordered } from "../ordered.interface";
-import type { ObservationFilter } from "./observation-filter.interface";
+import type { Ordered } from "../ordered.interface.js";
+import type { ObservationFilter } from "./observation-filter.interface.js";
 
 /**
  * Mutable container for observation filters.

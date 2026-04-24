@@ -17,5 +17,5 @@
 export {
   IgnoredMeters,
   OtelMeterObservationHandler,
-} from "./otel-meter-observation-handler";
-export { OtelTracingObservationHandler } from "./otel-tracing-observation-handler";
+} from "./otel-meter-observation-handler.js";
+export { OtelTracingObservationHandler } from "./otel-tracing-observation-handler.js";

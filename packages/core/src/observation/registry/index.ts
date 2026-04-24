@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export { AlsObservationRegistry } from "./als-observation-registry";
-export { NoopObservationRegistry } from "./noop-observation-registry";
-export type { ObservationRegistry } from "./observation-registry.interface";
+export { AlsObservationRegistry } from "./als-observation-registry.js";
+export { NoopObservationRegistry } from "./noop-observation-registry.js";
+export type { ObservationRegistry } from "./observation-registry.interface.js";

@@ -15,7 +15,7 @@
  */
 
 import type { MikroORM } from "@mikro-orm/core";
-import type { Connection, SqlFragment } from "../api";
+import type { Connection, SqlFragment } from "../api/index.js";
 
 type MikroOrmEntityManager = MikroORM["em"] & {
   execute(

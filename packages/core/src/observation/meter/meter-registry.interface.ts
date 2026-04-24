@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Counter } from "./counter";
-import type { MeterId } from "./meter-id";
+import type { Counter } from "./counter.js";
+import type { MeterId } from "./meter-id.js";
 
 /**
  * Interface for a registry that creates and manages meters.

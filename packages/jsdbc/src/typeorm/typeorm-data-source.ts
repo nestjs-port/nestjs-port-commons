@@ -16,9 +16,13 @@
 
 import type { DataSourceOptions, DataSource as TypeOrmSource } from "typeorm";
 
-import { type Connection, DatabaseDialect, type DataSource } from "../api";
-import { TransactionSynchronizationManager } from "../core";
-import { TypeOrmConnection } from "./typeorm-connection";
+import {
+  type Connection,
+  DatabaseDialect,
+  type DataSource,
+} from "../api/index.js";
+import { TransactionSynchronizationManager } from "../core/index.js";
+import { TypeOrmConnection } from "./typeorm-connection.js";
 
 export class TypeOrmDataSource implements DataSource {
   private readonly dialect: DatabaseDialect;

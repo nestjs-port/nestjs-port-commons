@@ -16,9 +16,9 @@
 
 import { describe, expect, it } from "vitest";
 
-import { DatabaseDialect } from "../../api";
-import type { DrizzleDatabase } from "../drizzle";
-import { DrizzleDataSource } from "../drizzle-data-source";
+import { DatabaseDialect } from "../../api/index.js";
+import type { DrizzleDatabase } from "../drizzle.js";
+import { DrizzleDataSource } from "../drizzle-data-source.js";
 
 describe("DrizzleDataSource", () => {
   it.each([

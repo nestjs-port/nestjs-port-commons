@@ -16,7 +16,10 @@
 
 import { LogLevel } from "@nestjs-port/core";
 import { describe, expect, it } from "vitest";
-import { RecordingLogger, RecordingLoggerFactory } from "../recording-logger";
+import {
+  RecordingLogger,
+  RecordingLoggerFactory,
+} from "../recording-logger.js";
 
 describe("RecordingLogger", () => {
   it("records level, message, and args for each call", () => {

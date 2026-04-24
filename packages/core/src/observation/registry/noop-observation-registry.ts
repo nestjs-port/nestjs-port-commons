@@ -20,8 +20,8 @@ import type {
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "..";
-import type { ObservationRegistry } from "./observation-registry.interface";
+} from "../index.js";
+import type { ObservationRegistry } from "./observation-registry.interface.js";
 
 /**
  * No-op implementation of ObservationRegistry.

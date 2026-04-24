@@ -17,6 +17,6 @@
 export {
   TypeOrmJsdbcModule,
   type TypeOrmJsdbcModuleOptions,
-} from "./typeorm.module";
-export { TypeOrmConnection } from "./typeorm-connection";
-export { TypeOrmDataSource } from "./typeorm-data-source";
+} from "./typeorm.module.js";
+export { TypeOrmConnection } from "./typeorm-connection.js";
+export { TypeOrmDataSource } from "./typeorm-data-source.js";

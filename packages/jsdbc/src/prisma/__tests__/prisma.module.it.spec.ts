@@ -23,10 +23,10 @@ import {
   type StartedPostgreSqlContainer,
 } from "@testcontainers/postgresql";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api";
-import type { JsdbcTemplate } from "../../core";
-import { PrismaJsdbcModule } from "../prisma.module";
-import { Prisma, PrismaClient } from "./generated/client";
+import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api/index.js";
+import type { JsdbcTemplate } from "../../core/index.js";
+import { PrismaJsdbcModule } from "../prisma.module.js";
+import { Prisma, PrismaClient } from "./generated/client/index.js";
 
 describe("PrismaJsdbcModuleIT", () => {
   let postgresContainer!: StartedPostgreSqlContainer;

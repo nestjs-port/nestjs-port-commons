@@ -16,15 +16,15 @@
 
 import { firstValueFrom, map, of, throwError } from "rxjs";
 import { describe, expect, it } from "vitest";
-import { KeyValue } from "../key-value";
-import { KeyValues } from "../key-values";
-import { ObservationContext } from "../observation-context";
-import type { ObservationConvention } from "../observation-convention.interface";
-import type { ObservationFilter } from "../observation-filter.interface";
-import type { ObservationHandler } from "../observation-handler.interface";
-import type { ObservationScope } from "../observation-scope.interface";
-import { AlsObservationRegistry } from "../registry";
-import { SimpleObservation } from "../simple-observation";
+import { KeyValue } from "../key-value.js";
+import { KeyValues } from "../key-values.js";
+import { ObservationContext } from "../observation-context.js";
+import type { ObservationConvention } from "../observation-convention.interface.js";
+import type { ObservationFilter } from "../observation-filter.interface.js";
+import type { ObservationHandler } from "../observation-handler.interface.js";
+import type { ObservationScope } from "../observation-scope.interface.js";
+import { AlsObservationRegistry } from "../registry/index.js";
+import { SimpleObservation } from "../simple-observation.js";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
   getName(): string {

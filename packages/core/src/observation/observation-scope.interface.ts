@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Observation } from "./observation";
-import type { ObservationContext } from "./observation-context";
+import type { Observation } from "./observation.js";
+import type { ObservationContext } from "./observation-context.js";
 
 /**
  * Scope of an observation. Corresponds to Micrometer's Observation.Scope.

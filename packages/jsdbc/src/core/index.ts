@@ -12,9 +12,8 @@
  * limitations under the License.
  */
 
-export { ClassTransformerRowMapper } from "./class-transformer-row-mapper";
-export { JsdbcTemplate } from "./jsdbc-template";
-export type { RowMapper, RowMapperFunction } from "./row-mapper.interface";
-export { SingleColumnRowMapper } from "./single-column-row-mapper";
-export { TransactionSynchronizationManager } from "./transaction-synchronization-manager";
-export { ZodRowMapper } from "./zod-row-mapper";
+export { JsdbcTemplate } from "./jsdbc-template.js";
+export type { RowMapper, RowMapperFunction } from "./row-mapper.interface.js";
+export { SingleColumnRowMapper } from "./single-column-row-mapper.js";
+export { TransactionSynchronizationManager } from "./transaction-synchronization-manager.js";
+export { ZodRowMapper } from "./zod-row-mapper.js";

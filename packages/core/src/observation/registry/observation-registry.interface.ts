@@ -20,7 +20,7 @@ import type {
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "..";
+} from "../index.js";
 
 /**
  * Registry that manages handlers and current observation scope.

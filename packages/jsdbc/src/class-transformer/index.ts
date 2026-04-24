@@ -14,6 +14,4 @@
  * limitations under the License.
  */
 
-export * from "./api/index.js";
-export * from "./core/index.js";
-export * from "./custom/index.js";
+export { ClassTransformerRowMapper } from "../core/class-transformer-row-mapper.js";

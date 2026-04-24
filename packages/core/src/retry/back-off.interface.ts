@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Milliseconds } from "../temporal";
+import type { Milliseconds } from "../temporal/index.js";
 
 /**
  * Strategy interface for providing a {@link BackOffExecution} that indicates the

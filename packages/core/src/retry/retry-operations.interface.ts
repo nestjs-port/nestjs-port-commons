@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Retryable } from "./retryable.interface";
+import type { Retryable } from "./retryable.interface.js";
 
 /**
  * Interface specifying basic retry operations.

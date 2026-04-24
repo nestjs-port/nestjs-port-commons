@@ -17,7 +17,7 @@
 import { MeterId, Tag } from "@nestjs-port/core";
 import type { Attributes, Counter, Meter } from "@opentelemetry/api";
 import { beforeEach, describe, expect, it } from "vitest";
-import { OtelMeterRegistry } from "../otel-meter-registry";
+import { OtelMeterRegistry } from "../otel-meter-registry.js";
 
 type CounterAdd = { value: number; attributes?: Attributes };
 

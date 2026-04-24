@@ -20,10 +20,10 @@ import type {
   ObservationFilter,
   ObservationHandler,
   ObservationScope,
-} from "..";
-import { ObservationContext, SimpleObservation } from "..";
-import { KeyValues } from "../key-values";
-import { AlsObservationRegistry } from "../registry";
+} from "../index.js";
+import { ObservationContext, SimpleObservation } from "../index.js";
+import { KeyValues } from "../key-values.js";
+import { AlsObservationRegistry } from "../registry/index.js";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
   getName(): string {

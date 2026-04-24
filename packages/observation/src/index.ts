@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export * from "./handlers";
-export * from "./module";
-export { OtelMeterRegistry } from "./otel-meter-registry";
+export * from "./handlers/index.js";
+export * from "./module/index.js";
+export { OtelMeterRegistry } from "./otel-meter-registry.js";

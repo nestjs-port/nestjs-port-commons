@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { ObservationContext, ObservationHandler } from "..";
+import type { ObservationContext, ObservationHandler } from "../index.js";
 
 /**
  * Marker base class for meter handlers.

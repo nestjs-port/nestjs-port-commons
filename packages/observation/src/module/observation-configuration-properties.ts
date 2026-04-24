@@ -15,7 +15,7 @@
  */
 
 import type { Meter, Tracer } from "@opentelemetry/api";
-import type { IgnoredMeters } from "../handlers";
+import type { IgnoredMeters } from "../handlers/index.js";
 
 export interface ObservationConfigurationProperties {
   meter?: Meter;

@@ -23,9 +23,13 @@ import type {
 } from "@nestjs/common";
 import { Module } from "@nestjs/common";
 
-import { type DataSource, JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
-import { MikroOrmDataSource } from "./mikroorm-data-source";
+import {
+  type DataSource,
+  JSDBC_DATA_SOURCE,
+  JSDBC_TEMPLATE,
+} from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
+import { MikroOrmDataSource } from "./mikroorm-data-source.js";
 
 export interface MikroOrmJsdbcModuleOptions {
   global?: boolean;

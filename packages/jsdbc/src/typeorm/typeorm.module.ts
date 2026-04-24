@@ -19,9 +19,13 @@ import { Module } from "@nestjs/common";
 import { getDataSourceToken } from "@nestjs/typeorm";
 import type { DataSource as TypeOrmDataSource } from "typeorm";
 
-import { type DataSource, JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
-import { TypeOrmDataSource as JsdbcTypeOrmDataSource } from "./typeorm-data-source";
+import {
+  type DataSource,
+  JSDBC_DATA_SOURCE,
+  JSDBC_TEMPLATE,
+} from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
+import { TypeOrmDataSource as JsdbcTypeOrmDataSource } from "./typeorm-data-source.js";
 
 export interface TypeOrmJsdbcModuleOptions {
   dataSourceName?: string;

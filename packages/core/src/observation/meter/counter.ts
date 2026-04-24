@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { MeterId } from "./meter-id";
-import type { MeterRegistry } from "./meter-registry.interface";
-import { Tag } from "./tag";
+import { MeterId } from "./meter-id.js";
+import type { MeterRegistry } from "./meter-registry.interface.js";
+import { Tag } from "./tag.js";
 
 /**
  * A counter metric that can be incremented.

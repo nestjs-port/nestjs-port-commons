@@ -16,8 +16,8 @@
 
 import { sql as drizzleSql, type SQL } from "drizzle-orm";
 
-import type { Connection, SqlFragment } from "../api";
-import type { DrizzleDatabase } from "./drizzle";
+import type { Connection, SqlFragment } from "../api/index.js";
+import type { DrizzleDatabase } from "./drizzle.js";
 
 export class DrizzleConnection implements Connection {
   #closed = false;

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-export { FetchHttpClient } from "./fetch-http-client";
-export type { HttpClient } from "./http-client.interface";
-export type { ResponseEntity } from "./response-entity";
-export type { ResponseErrorHandler } from "./response-error-handler.interface";
-export { sseStream } from "./server-sent-events";
+export { FetchHttpClient } from "./fetch-http-client.js";
+export type { HttpClient } from "./http-client.interface.js";
+export type { ResponseEntity } from "./response-entity.js";
+export type { ResponseErrorHandler } from "./response-error-handler.interface.js";
+export { sseStream } from "./server-sent-events.js";

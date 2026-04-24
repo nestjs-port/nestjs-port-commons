@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { KeyValue } from "./key-value";
+import { KeyValue } from "./key-value.js";
 
 /**
  * Collection of {@link KeyValue} entries.

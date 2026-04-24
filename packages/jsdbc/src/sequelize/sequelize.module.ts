@@ -24,9 +24,13 @@ import { Module } from "@nestjs/common";
 import { getConnectionToken } from "@nestjs/sequelize";
 import type { Sequelize } from "sequelize";
 
-import { type DataSource, JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
-import { SequelizeDataSource } from "./sequelize-data-source";
+import {
+  type DataSource,
+  JSDBC_DATA_SOURCE,
+  JSDBC_TEMPLATE,
+} from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
+import { SequelizeDataSource } from "./sequelize-data-source.js";
 
 export interface SequelizeJsdbcModuleOptions {
   connectionName?: string;

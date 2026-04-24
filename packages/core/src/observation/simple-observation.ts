@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import { Observation } from "./observation";
-import type { ObservationContext } from "./observation-context";
-import type { ObservationConvention } from "./observation-convention.interface";
-import type { ObservationHandler } from "./observation-handler.interface";
-import type { ObservationScope } from "./observation-scope.interface";
-import type { ObservationRegistry } from "./registry";
-import { SimpleObservationScope } from "./simple-observation-scope";
+import { Observation } from "./observation.js";
+import type { ObservationContext } from "./observation-context.js";
+import type { ObservationConvention } from "./observation-convention.interface.js";
+import type { ObservationHandler } from "./observation-handler.interface.js";
+import type { ObservationScope } from "./observation-scope.interface.js";
+import type { ObservationRegistry } from "./registry/index.js";
+import { SimpleObservationScope } from "./simple-observation-scope.js";
 
 /**
  * Default observation implementation that manages lifecycle callbacks and scope nesting.

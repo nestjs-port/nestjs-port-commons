@@ -23,11 +23,11 @@ import {
   type DataSource,
   JSDBC_DATA_SOURCE,
   JSDBC_TEMPLATE,
-} from "../../api";
+} from "../../api/index.js";
 import {
   CustomJsdbcModule,
   type CustomJsdbcModuleAsyncOptions,
-} from "../custom.module";
+} from "../custom.module.js";
 
 describe("CustomJsdbcModule", () => {
   it("registers a provided data source", () => {

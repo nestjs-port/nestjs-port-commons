@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { HttpClient } from "./http-client.interface";
+import type { HttpClient } from "./http-client.interface.js";
 
 /**
  * Default HTTP client implementation using the native fetch API.

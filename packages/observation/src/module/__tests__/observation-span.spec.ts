@@ -30,7 +30,7 @@ import {
   SimpleSpanProcessor,
 } from "@opentelemetry/sdk-trace-base";
 import { afterEach, describe, expect, it } from "vitest";
-import { ObservationModule } from "../../index";
+import { ObservationModule } from "../../index.js";
 
 class TestConvention implements ObservationConvention<ObservationContext> {
   getName(): string {

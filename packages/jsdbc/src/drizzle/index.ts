@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-export type { DrizzleDatabase } from "./drizzle";
+export type { DrizzleDatabase } from "./drizzle.js";
 export {
   DrizzleJsdbcModule,
   type DrizzleJsdbcModuleOptions,
-} from "./drizzle.module";
-export { DrizzleConnection } from "./drizzle-connection";
+} from "./drizzle.module.js";
+export { DrizzleConnection } from "./drizzle-connection.js";
 export {
   DrizzleDataSource,
   type DrizzleJsdbcOptions,
-} from "./drizzle-data-source";
+} from "./drizzle-data-source.js";

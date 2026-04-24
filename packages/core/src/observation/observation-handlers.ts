@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { ObservationContext } from "./observation-context";
-import type { ObservationHandler } from "./observation-handler.interface";
+import type { ObservationContext } from "./observation-context.js";
+import type { ObservationHandler } from "./observation-handler.interface.js";
 
 /**
  * Mutable container for observation handlers.

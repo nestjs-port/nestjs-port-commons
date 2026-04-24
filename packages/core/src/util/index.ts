@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export { ParsingUtils } from "./parsing-utils";
-export { StringUtils } from "./string-utils";
+export { ParsingUtils } from "./parsing-utils.js";
+export { StringUtils } from "./string-utils.js";

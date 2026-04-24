@@ -22,13 +22,17 @@ import type {
 } from "@nestjs/common";
 import { Module } from "@nestjs/common";
 
-import { type DataSource, JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
-import type { DrizzleDatabase } from "./drizzle";
+import {
+  type DataSource,
+  JSDBC_DATA_SOURCE,
+  JSDBC_TEMPLATE,
+} from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
+import type { DrizzleDatabase } from "./drizzle.js";
 import {
   DrizzleDataSource,
   type DrizzleJsdbcOptions,
-} from "./drizzle-data-source";
+} from "./drizzle-data-source.js";
 
 export interface DrizzleJsdbcModuleOptions extends DrizzleJsdbcOptions {
   dbToken: InjectionToken;

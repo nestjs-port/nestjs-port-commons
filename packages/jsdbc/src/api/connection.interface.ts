@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { SqlFragment } from "./sql-tag";
+import type { SqlFragment } from "./sql-tag.js";
 
 export interface Connection {
   query(fragment: SqlFragment): Promise<Record<string, unknown>[]>;

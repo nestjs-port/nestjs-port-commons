@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export { type Milliseconds, ms } from "./duration";
+export { type Milliseconds, ms } from "./duration.js";

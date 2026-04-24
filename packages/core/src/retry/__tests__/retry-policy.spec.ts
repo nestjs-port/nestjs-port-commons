@@ -15,8 +15,8 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { ms } from "../../temporal";
-import { ExponentialBackOff, FixedBackOff, RetryPolicy } from "../index";
+import { ms } from "../../temporal/index.js";
+import { ExponentialBackOff, FixedBackOff, RetryPolicy } from "../index.js";
 
 /**
  * Unit tests for {@link RetryPolicy} and its builder.

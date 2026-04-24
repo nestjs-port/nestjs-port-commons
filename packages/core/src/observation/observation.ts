@@ -15,11 +15,11 @@
  */
 
 import { defer, finalize, Observable, tap } from "rxjs";
-import type { ObservationContext } from "./observation-context";
-import type { ObservationConvention } from "./observation-convention.interface";
-import type { ObservationHandler } from "./observation-handler.interface";
-import type { ObservationScope } from "./observation-scope.interface";
-import type { ObservationRegistry } from "./registry";
+import type { ObservationContext } from "./observation-context.js";
+import type { ObservationConvention } from "./observation-convention.interface.js";
+import type { ObservationHandler } from "./observation-handler.interface.js";
+import type { ObservationScope } from "./observation-scope.interface.js";
+import type { ObservationRegistry } from "./registry/index.js";
 
 /**
  * Lifecycle wrapper around an observation context.

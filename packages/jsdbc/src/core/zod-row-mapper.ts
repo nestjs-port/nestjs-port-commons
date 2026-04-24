@@ -16,7 +16,7 @@
 
 import type { z } from "zod";
 
-import type { RowMapper } from "./row-mapper.interface";
+import type { RowMapper } from "./row-mapper.interface.js";
 
 export class ZodRowMapper<T> implements RowMapper<T> {
   constructor(private readonly schema: z.ZodType<T>) {}

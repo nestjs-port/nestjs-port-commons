@@ -16,7 +16,7 @@
 
 import { AsyncLocalStorage } from "node:async_hooks";
 
-import type { Connection, DataSource } from "../api";
+import type { Connection, DataSource } from "../api/index.js";
 
 interface TransactionStore {
   readonly connections: Map<DataSource, Connection>;

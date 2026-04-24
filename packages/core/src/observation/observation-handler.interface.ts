@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { ObservationContext } from "./observation-context";
+import type { ObservationContext } from "./observation-context.js";
 
 /**
  * Handler that receives observation lifecycle callbacks.

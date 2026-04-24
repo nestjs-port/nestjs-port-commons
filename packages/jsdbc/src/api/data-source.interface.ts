@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Connection } from "./connection.interface";
-import type { DatabaseDialect } from "./database-dialect.enum";
+import type { Connection } from "./connection.interface.js";
+import type { DatabaseDialect } from "./database-dialect.enum.js";
 
 export interface DataSource {
   getConnection(): Promise<Connection>;

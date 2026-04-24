@@ -19,38 +19,37 @@
     "dist",
     "CHANGELOG.md"
   ],
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
+    },
+    "./class-transformer": {
+      "types": "./dist/class-transformer/index.d.ts",
+      "default": "./dist/class-transformer/index.js"
     },
     "./typeorm": {
       "types": "./dist/typeorm/index.d.ts",
-      "import": "./dist/typeorm/index.js",
-      "require": "./dist/typeorm/index.js"
+      "default": "./dist/typeorm/index.js"
     },
     "./mikroorm": {
       "types": "./dist/mikroorm/index.d.ts",
-      "import": "./dist/mikroorm/index.js",
-      "require": "./dist/mikroorm/index.js"
+      "default": "./dist/mikroorm/index.js"
     },
     "./sequelize": {
       "types": "./dist/sequelize/index.d.ts",
-      "import": "./dist/sequelize/index.js",
-      "require": "./dist/sequelize/index.js"
+      "default": "./dist/sequelize/index.js"
     },
     "./prisma": {
       "types": "./dist/prisma/index.d.ts",
-      "import": "./dist/prisma/index.js",
-      "require": "./dist/prisma/index.js"
+      "default": "./dist/prisma/index.js"
     },
     "./drizzle": {
       "types": "./dist/drizzle/index.d.ts",
-      "import": "./dist/drizzle/index.js",
-      "require": "./dist/drizzle/index.js"
+      "default": "./dist/drizzle/index.js"
     }
   },
   "scripts": {
@@ -126,5 +125,8 @@
     "typeorm": {
       "optional": true
     }
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

@@ -15,9 +15,13 @@
  */
 
 import type { Sequelize } from "sequelize";
-import { type Connection, DatabaseDialect, type DataSource } from "../api";
-import { TransactionSynchronizationManager } from "../core";
-import { SequelizeConnection } from "./sequelize-connection";
+import {
+  type Connection,
+  DatabaseDialect,
+  type DataSource,
+} from "../api/index.js";
+import { TransactionSynchronizationManager } from "../core/index.js";
+import { SequelizeConnection } from "./sequelize-connection.js";
 
 export class SequelizeDataSource implements DataSource {
   constructor(private readonly sequelize: Sequelize) {}

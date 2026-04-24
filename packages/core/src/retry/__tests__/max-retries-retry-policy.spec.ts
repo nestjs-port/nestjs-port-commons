@@ -15,8 +15,8 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { ms } from "../../temporal";
-import { BackOffExecution, RetryPolicy, RetryPolicyBuilder } from "../index";
+import { ms } from "../../temporal/index.js";
+import { BackOffExecution, RetryPolicy, RetryPolicyBuilder } from "../index.js";
 
 /**
  * Max retries {@link RetryPolicy} tests.

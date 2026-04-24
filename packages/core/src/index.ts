@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-export * from "./constant";
-export * from "./converter";
-export * from "./logging";
-export * from "./observation";
-export * from "./ordered.interface";
-export * from "./provider";
-export * from "./retry";
-export * from "./temporal";
-export * from "./util";
-export * from "./web";
+export * from "./constant/index.js";
+export * from "./converter/index.js";
+export * from "./logging/index.js";
+export * from "./observation/index.js";
+export * from "./ordered.interface.js";
+export * from "./provider/index.js";
+export * from "./retry/index.js";
+export * from "./temporal/index.js";
+export * from "./util/index.js";
+export * from "./web/index.js";

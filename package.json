@@ -4,6 +4,7 @@
   "private": true,
   "description": "NestJS port commons workspace",
   "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",

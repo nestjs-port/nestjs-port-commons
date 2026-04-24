@@ -17,7 +17,7 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 
-import { ZodRowMapper } from "../zod-row-mapper";
+import { ZodRowMapper } from "../zod-row-mapper.js";
 
 describe("ZodRowMapper", () => {
   it("maps single-column scalar rows", () => {

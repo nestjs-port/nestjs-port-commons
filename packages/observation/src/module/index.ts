@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-export {
-  ObservationModule,
-  ObservationModuleAsyncOptions,
-} from "./observation.module";
-export type { ObservationConfigurationProperties } from "./observation-configuration-properties";
-export { ObservationProviderPostProcessor } from "./observation-provider-post-processor";
+export { ObservationModule } from "./observation.module.js";
+export type { ObservationModuleAsyncOptions } from "./observation.module.js";
+export type { ObservationConfigurationProperties } from "./observation-configuration-properties.js";
+export { ObservationProviderPostProcessor } from "./observation-provider-post-processor.js";

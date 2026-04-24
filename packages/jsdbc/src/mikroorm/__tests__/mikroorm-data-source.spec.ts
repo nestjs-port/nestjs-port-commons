@@ -17,8 +17,8 @@
 import type { MikroORM, Platform } from "@mikro-orm/core";
 import { describe, expect, it } from "vitest";
 
-import { DatabaseDialect } from "../../api";
-import { MikroOrmDataSource } from "../mikroorm-data-source";
+import { DatabaseDialect } from "../../api/index.js";
+import { MikroOrmDataSource } from "../mikroorm-data-source.js";
 
 describe("MikroOrmDataSource", () => {
   it.each([

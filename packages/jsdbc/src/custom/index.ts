@@ -18,4 +18,4 @@ export {
   CustomJsdbcModule,
   type CustomJsdbcModuleAsyncOptions,
   type CustomJsdbcModuleOptions,
-} from "./custom.module";
+} from "./custom.module.js";

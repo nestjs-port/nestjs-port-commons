@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export { ConsoleLogger, ConsoleLoggerFactory } from "./console-logger";
-export { RecordingLogger, RecordingLoggerFactory } from "./recording-logger";
+export { ConsoleLogger, ConsoleLoggerFactory } from "./console-logger.js";
+export { RecordingLogger, RecordingLoggerFactory } from "./recording-logger.js";

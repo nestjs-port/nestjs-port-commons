@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import type { Logger } from "./logger.interface";
-import type { ILoggerFactory } from "./logger-factory.interface";
+import type { Logger } from "./logger.interface.js";
+import type { ILoggerFactory } from "./logger-factory.interface.js";
 
 /**
  * Module-level reference to the bound factory, accessible by DelegatingLogger.

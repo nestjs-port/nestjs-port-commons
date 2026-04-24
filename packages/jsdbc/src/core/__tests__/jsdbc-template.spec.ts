@@ -23,13 +23,13 @@ import {
   type DataSource,
   type SqlFragment,
   sql,
-} from "../../api";
-import { ClassTransformerRowMapper } from "../class-transformer-row-mapper";
-import { JsdbcTemplate } from "../jsdbc-template";
-import type { RowMapper, RowMapperFunction } from "../row-mapper.interface";
-import { SingleColumnRowMapper } from "../single-column-row-mapper";
-import { TransactionSynchronizationManager } from "../transaction-synchronization-manager";
-import { ZodRowMapper } from "../zod-row-mapper";
+} from "../../api/index.js";
+import { ClassTransformerRowMapper } from "../class-transformer-row-mapper.js";
+import { JsdbcTemplate } from "../jsdbc-template.js";
+import type { RowMapper, RowMapperFunction } from "../row-mapper.interface.js";
+import { SingleColumnRowMapper } from "../single-column-row-mapper.js";
+import { TransactionSynchronizationManager } from "../transaction-synchronization-manager.js";
+import { ZodRowMapper } from "../zod-row-mapper.js";
 
 class ConversationRow {
   @Expose({ name: "conversation_id" })

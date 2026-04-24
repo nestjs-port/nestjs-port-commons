@@ -16,8 +16,8 @@
 
 import { describe, expect, it } from "vitest";
 
-import { DatabaseDialect } from "../../api";
-import { TypeOrmDataSource } from "../typeorm-data-source";
+import { DatabaseDialect } from "../../api/index.js";
+import { TypeOrmDataSource } from "../typeorm-data-source.js";
 
 describe("TypeOrmDataSource", () => {
   it.each([

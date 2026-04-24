@@ -33,10 +33,10 @@ import {
 import {
   OtelMeterObservationHandler,
   OtelTracingObservationHandler,
-} from "../handlers";
-import { OtelMeterRegistry } from "../otel-meter-registry";
-import type { ObservationConfigurationProperties } from "./observation-configuration-properties";
-import { ObservationProviderPostProcessor } from "./observation-provider-post-processor";
+} from "../handlers/index.js";
+import { OtelMeterRegistry } from "../otel-meter-registry.js";
+import type { ObservationConfigurationProperties } from "./observation-configuration-properties.js";
+import { ObservationProviderPostProcessor } from "./observation-provider-post-processor.js";
 
 export interface ObservationModuleAsyncOptions {
   imports?: DynamicModule["imports"];

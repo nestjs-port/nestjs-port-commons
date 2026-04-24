@@ -16,7 +16,7 @@
 
 import { LogLevel } from "@nestjs-port/core";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { ConsoleLogger, ConsoleLoggerFactory } from "../console-logger";
+import { ConsoleLogger, ConsoleLoggerFactory } from "../console-logger.js";
 
 afterEach(() => {
   vi.unstubAllEnvs();

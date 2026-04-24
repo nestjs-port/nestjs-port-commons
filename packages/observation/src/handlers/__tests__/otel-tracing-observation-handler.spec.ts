@@ -26,7 +26,7 @@ import {
   trace,
 } from "@opentelemetry/api";
 import { describe, expect, it, vi } from "vitest";
-import { OtelTracingObservationHandler } from "../otel-tracing-observation-handler";
+import { OtelTracingObservationHandler } from "../otel-tracing-observation-handler.js";
 
 function createTracerWithSpan(span: Span): {
   tracer: Tracer;

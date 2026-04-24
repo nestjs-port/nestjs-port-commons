@@ -15,7 +15,7 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { ExceptionTypeFilter } from "../support/exception-type-filter";
+import { ExceptionTypeFilter } from "../support/exception-type-filter.js";
 
 /**
  * Unit tests for {@link ExceptionTypeFilter}.

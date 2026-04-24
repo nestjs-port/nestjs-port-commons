@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-import { type Connection, DatabaseDialect, type DataSource } from "../api";
-import { TransactionSynchronizationManager } from "../core";
-import type { DrizzleDatabase } from "./drizzle";
-import { DrizzleConnection } from "./drizzle-connection";
+import {
+  type Connection,
+  DatabaseDialect,
+  type DataSource,
+} from "../api/index.js";
+import { TransactionSynchronizationManager } from "../core/index.js";
+import type { DrizzleDatabase } from "./drizzle.js";
+import { DrizzleConnection } from "./drizzle-connection.js";
 
 export interface DrizzleJsdbcOptions {
   dialect?: DatabaseDialect;

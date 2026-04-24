@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { StringUtils } from "../string-utils";
+import { StringUtils } from "../string-utils.js";
 
 describe("StringUtils", () => {
   describe("hasText", () => {

@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export { CompositeRetryListener } from "./composite-retry-listener";
-export { ExceptionTypeFilter } from "./exception-type-filter";
+export { CompositeRetryListener } from "./composite-retry-listener.js";
+export { ExceptionTypeFilter } from "./exception-type-filter.js";

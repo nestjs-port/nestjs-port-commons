@@ -16,7 +16,7 @@
 
 import { describe, expect, it } from "vitest";
 
-import { SingleColumnRowMapper } from "../single-column-row-mapper";
+import { SingleColumnRowMapper } from "../single-column-row-mapper.js";
 
 describe("SingleColumnRowMapper", () => {
   it("converts string values", () => {

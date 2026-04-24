@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Logger } from "./logger.interface";
+import type { Logger } from "./logger.interface.js";
 
 /**
  * Factory interface for creating Logger instances.

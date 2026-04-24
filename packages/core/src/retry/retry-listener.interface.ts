@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { RetryException } from "./retry-exception";
-import type { RetryPolicy } from "./retry-policy";
-import type { RetryState } from "./retry-state";
-import type { Retryable } from "./retryable.interface";
+import type { RetryException } from "./retry-exception.js";
+import type { RetryPolicy } from "./retry-policy.js";
+import type { RetryState } from "./retry-state.js";
+import type { Retryable } from "./retryable.interface.js";
 
 /**
  * `RetryListener` defines a *listener* API for reacting to events

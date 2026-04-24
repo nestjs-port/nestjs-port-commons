@@ -25,7 +25,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import {
   IgnoredMeters,
   OtelMeterObservationHandler,
-} from "../otel-meter-observation-handler";
+} from "../otel-meter-observation-handler.js";
 
 type HistogramRecord = { value: number; attributes?: Attributes };
 type CounterAdd = { value: number; attributes?: Attributes };

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { type Milliseconds, ms } from "../temporal";
-import { type BackOff, BackOffExecution } from "./back-off.interface";
+import { type Milliseconds, ms } from "../temporal/index.js";
+import { type BackOff, BackOffExecution } from "./back-off.interface.js";
 
 /**
  * A simple {@link BackOff} implementation that provides a fixed interval

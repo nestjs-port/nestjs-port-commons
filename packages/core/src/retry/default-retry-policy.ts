@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import type { Milliseconds } from "../temporal";
-import type { BackOff } from "./back-off.interface";
-import { RetryPolicy } from "./retry-policy";
-import { ExceptionTypeFilter } from "./support";
+import type { Milliseconds } from "../temporal/index.js";
+import type { BackOff } from "./back-off.interface.js";
+import { RetryPolicy } from "./retry-policy.js";
+import { ExceptionTypeFilter } from "./support/index.js";
 
 /**
  * Default {@link RetryPolicy} created by {@link RetryPolicyBuilder}.

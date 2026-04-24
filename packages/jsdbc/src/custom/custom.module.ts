@@ -22,9 +22,9 @@ import type {
 } from "@nestjs/common";
 import { Module } from "@nestjs/common";
 
-import type { DataSource } from "../api";
-import { JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api";
-import { JsdbcTemplate } from "../core";
+import type { DataSource } from "../api/index.js";
+import { JSDBC_DATA_SOURCE, JSDBC_TEMPLATE } from "../api/index.js";
+import { JsdbcTemplate } from "../core/index.js";
 
 export interface CustomJsdbcModuleAsyncOptions {
   global?: boolean;

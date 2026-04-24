@@ -17,6 +17,6 @@
 export {
   MikroOrmJsdbcModule,
   type MikroOrmJsdbcModuleOptions,
-} from "./mikroorm.module";
-export { MikroOrmConnection } from "./mikroorm-connection";
-export { MikroOrmDataSource } from "./mikroorm-data-source";
+} from "./mikroorm.module.js";
+export { MikroOrmConnection } from "./mikroorm-connection.js";
+export { MikroOrmDataSource } from "./mikroorm-data-source.js";

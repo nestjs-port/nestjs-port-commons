@@ -17,9 +17,9 @@
 export {
   PrismaJsdbcModule,
   type PrismaJsdbcModuleOptions,
-} from "./prisma.module";
-export { PrismaConnection } from "./prisma-connection";
+} from "./prisma.module.js";
+export { PrismaConnection } from "./prisma-connection.js";
 export {
   PrismaDataSource,
   type PrismaJsdbcOptions,
-} from "./prisma-data-source";
+} from "./prisma-data-source.js";

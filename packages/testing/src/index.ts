@@ -14,5 +14,5 @@
  * limitations under the License.
  */
 
-export * from "./logging";
-export * from "./observation";
+export * from "./logging/index.js";
+export * from "./observation/index.js";

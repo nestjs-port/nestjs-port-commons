@@ -24,9 +24,9 @@ import {
 } from "@testcontainers/postgresql";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api";
-import type { JsdbcTemplate } from "../../core";
-import { DrizzleJsdbcModule } from "../drizzle.module";
+import { DatabaseDialect, JSDBC_TEMPLATE, sql } from "../../api/index.js";
+import type { JsdbcTemplate } from "../../core/index.js";
+import { DrizzleJsdbcModule } from "../drizzle.module.js";
 
 const DRIZZLE_DB = Symbol("DRIZZLE_DB");
 

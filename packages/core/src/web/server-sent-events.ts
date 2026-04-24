@@ -16,8 +16,8 @@
 
 import { Observable, type Subscriber } from "rxjs";
 import { map, switchMap, takeWhile } from "rxjs/operators";
-import type { HttpClient } from "./http-client.interface";
-import type { ResponseErrorHandler } from "./response-error-handler.interface";
+import type { HttpClient } from "./http-client.interface.js";
+import type { ResponseErrorHandler } from "./response-error-handler.interface.js";
 
 /**
  * Represents a parsed Server-Sent Event.

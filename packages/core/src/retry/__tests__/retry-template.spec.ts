@@ -15,14 +15,14 @@
  */
 
 import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
-import { ms } from "../../temporal";
+import { ms } from "../../temporal/index.js";
 import {
   type Retryable,
   RetryException,
   type RetryListener,
   RetryPolicy,
   RetryTemplate,
-} from "../index";
+} from "../index.js";
 
 /**
  * Integration tests for {@link RetryTemplate}, {@link RetryPolicy} and

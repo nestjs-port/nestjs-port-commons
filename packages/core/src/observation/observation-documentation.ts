@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import type { Observation } from "./observation";
-import type { ObservationContext } from "./observation-context";
-import type { ObservationConvention } from "./observation-convention.interface";
-import type { ObservationRegistry } from "./registry";
-import { SimpleObservation } from "./simple-observation";
+import type { Observation } from "./observation.js";
+import type { ObservationContext } from "./observation-context.js";
+import type { ObservationConvention } from "./observation-convention.interface.js";
+import type { ObservationRegistry } from "./registry/index.js";
+import { SimpleObservation } from "./simple-observation.js";
 
 type ObservationConventionConstructor<
   CTX extends ObservationContext = ObservationContext,
