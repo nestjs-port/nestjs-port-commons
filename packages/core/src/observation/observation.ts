@@ -64,7 +64,6 @@ export abstract class Observation<CTX extends ObservationContext> {
       (next, handler) =>
         handler.runInScope
           ? () => {
-              // biome-ignore lint/style/noNonNullAssertion: guarded by truthy check above
               return handler.runInScope!(this._context, next);
             }
           : next,

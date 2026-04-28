@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-port/testing",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "private": false,
   "description": "Testing utilities for NestJS Port",
   "keywords": [

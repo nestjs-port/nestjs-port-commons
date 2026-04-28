@@ -1,5 +1,16 @@
 # @nestjs-port/jsdbc
 
+## 0.1.0
+
+### Minor Changes
+
+- 529996b: bump minor
+
+### Patch Changes
+
+- Updated dependencies [529996b]
+  - @nestjs-port/core@0.1.0
+
 ## 0.0.4
 
 ### Patch Changes

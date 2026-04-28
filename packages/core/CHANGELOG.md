@@ -1,5 +1,11 @@
 # @nestjs-port/core
 
+## 0.1.0
+
+### Minor Changes
+
+- 529996b: bump minor
+
 ## 0.0.4
 
 ### Patch Changes
