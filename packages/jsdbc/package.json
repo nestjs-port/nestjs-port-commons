@@ -94,7 +94,7 @@
   },
   "peerDependencies": {
     "@mikro-orm/core": "^7.0.0",
-    "@nestjs-port/core": "workspace:^",
+    "@nestjs-port/core": "^0.1.0",
     "@nestjs/common": "^10.0.0 || ^11.0.0",
     "@nestjs/sequelize": "^11.0.0",
     "@nestjs/typeorm": "^10.0.0 || ^11.0.0",

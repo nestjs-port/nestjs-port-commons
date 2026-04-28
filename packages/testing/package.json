@@ -40,7 +40,7 @@
     "@nestjs-port/core": "workspace:*"
   },
   "peerDependencies": {
-    "@nestjs-port/core": "workspace:^"
+    "@nestjs-port/core": "^0.1.0"
   },
   "engines": {
     "node": ">=22.12.0"
