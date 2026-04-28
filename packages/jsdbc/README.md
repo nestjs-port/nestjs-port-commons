@@ -2,16 +2,16 @@
 
 Shared packages used across the `nestjs-port` family of projects. This pnpm-managed monorepo publishes four ESM-only packages that provide the common primitives — JDBC-style data access, observability, retry, and testing helpers — that other `nestjs-port/*` repositories depend on.
 
-> **Status:** pre-1.0 (0.0.x). APIs may shift until the first stable release.
+> **Status:** pre-1.0 (0.1.x). APIs may shift until the first stable release.
 
 ## Packages
 
 | Package                                              | Version | Purpose                                                                  |
 | ---------------------------------------------------- | ------- | ------------------------------------------------------------------------ |
-| [`@nestjs-port/core`](./packages/core)               | 0.0.3   | Foundational primitives — Observation, Retry, Logging, Metrics, HTTP/SSE |
-| [`@nestjs-port/jsdbc`](./packages/jsdbc)             | 0.0.3   | `JsdbcTemplate` over TypeORM / Prisma / Drizzle / Sequelize / MikroORM   |
-| [`@nestjs-port/observation`](./packages/observation) | 0.0.1   | OpenTelemetry bridge for the core Observation API                        |
-| [`@nestjs-port/testing`](./packages/testing)         | 0.0.2   | Recording loggers and `TestObservationRegistry`                          |
+| [`@nestjs-port/core`](./packages/core)               | 0.1.0   | Foundational primitives — Observation, Retry, Logging, Metrics, HTTP/SSE |
+| [`@nestjs-port/jsdbc`](./packages/jsdbc)             | 0.1.0   | `JsdbcTemplate` over TypeORM / Prisma / Drizzle / Sequelize / MikroORM   |
+| [`@nestjs-port/observation`](./packages/observation) | 0.1.0   | OpenTelemetry bridge for the core Observation API                        |
+| [`@nestjs-port/testing`](./packages/testing)         | 0.1.0   | Recording loggers and `TestObservationRegistry`                          |
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ Shared packages used across the `nestjs-port` family of projects. This pnpm-mana
 
 ## Install
 
-Each package is published independently on npm. Install only what you need, plus the optional peer dependencies matching your stack.
+Each package is published independently on npm and JSR. Install only what you need, plus the optional peer dependencies matching your stack.
 
 ```bash
 pnpm add @nestjs-port/core rxjs
@@ -163,7 +163,7 @@ pnpm changeset              # describe your change
 pnpm changeset:status       # preview pending version bumps
 ```
 
-The `Changesets` GitHub Action opens a release PR and publishes to npm when merged to `main`. For JSR, publish from each package directory after the version bump has been applied.
+The `Changesets` GitHub Action opens a release PR and publishes to npm when merged to `main`. The workflow then publishes the affected packages to JSR using the packed package metadata.
 
 ## License
 

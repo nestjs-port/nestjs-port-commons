@@ -17,7 +17,7 @@
     "changeset": "changeset",
     "changeset:status": "changeset status --since=main",
     "changeset:version": "changeset version && pnpm jsr:sync",
-    "changeset:publish": "pnpm build && changeset publish && pnpm jsr:publish",
+    "changeset:publish": "pnpm build && changeset publish",
     "jsr:sync": "node scripts/sync-jsr.mjs",
     "jsr:check": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:check",
     "jsr:publish": "pnpm -r --workspace-concurrency=1 --filter './packages/*' run jsr:publish",

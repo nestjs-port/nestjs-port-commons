@@ -33,7 +33,7 @@
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
     "test": "vitest run",
-    "jsr:check": "node ../../scripts/publish-jsr.mjs --dry-run --allow-dirty",
+    "jsr:check": "jsr publish --dry-run --allow-dirty",
     "jsr:publish": "node ../../scripts/publish-jsr.mjs --allow-dirty"
   },
   "devDependencies": {
