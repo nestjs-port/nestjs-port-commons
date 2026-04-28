@@ -8,7 +8,7 @@ Shared packages used across the `nestjs-port` family of projects. This pnpm-mana
 
 | Package                                              | Version | Purpose                                                                  |
 | ---------------------------------------------------- | ------- | ------------------------------------------------------------------------ |
-| [`@nestjs-port/core`](./packages/core)               | 0.1.0   | Foundational primitives — Observation, Retry, Logging, Metrics, HTTP/SSE |
+| [`@nestjs-port/core`](./packages/core)               | 0.1.1   | Foundational primitives — Observation, Retry, Logging, Metrics, HTTP/SSE |
 | [`@nestjs-port/jsdbc`](./packages/jsdbc)             | 0.1.0   | `JsdbcTemplate` over TypeORM / Prisma / Drizzle / Sequelize / MikroORM   |
 | [`@nestjs-port/observation`](./packages/observation) | 0.1.0   | OpenTelemetry bridge for the core Observation API                        |
 | [`@nestjs-port/testing`](./packages/testing)         | 0.1.0   | Recording loggers and `TestObservationRegistry`                          |

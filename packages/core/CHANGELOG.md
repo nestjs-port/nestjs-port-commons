@@ -1,5 +1,11 @@
 # @nestjs-port/core
 
+## 0.1.1
+
+### Patch Changes
+
+- add async converter
+
 ## 0.1.0
 
 ### Minor Changes
