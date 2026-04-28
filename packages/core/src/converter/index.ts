@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export type { Converter } from "./converter.interface.js";
+export type { AsyncConverter, Converter } from "./converter.interface.js";

@@ -17,3 +17,7 @@
 export interface Converter<S, T> {
   convert(source: S): T;
 }
+
+export interface AsyncConverter<S, T> {
+  convert(source: S): Promise<T>;
+}
