@@ -16,57 +16,7 @@
 
 import type { Sequelize } from "sequelize";
 import { QueryTypes, type Transaction } from "sequelize";
-import type { Connection, SqlFragment } from "../api/index.js";
-
-function buildSequelizeSqlTag(fragment: SqlFragment): {
-  query: string;
-  parameters: unknown[];
-} {
-  let query = "";
-  const parameters: unknown[] = [];
-
-  for (let index = 0; index < fragment.expressions.length; index++) {
-    query += fragment.strings[index];
-    const expression = fragment.expressions[index];
-
-    if (expression === null) {
-      query += "NULL";
-      continue;
-    }
-
-    if (typeof expression === "function") {
-      const value = expression();
-
-      if (typeof value === "string") {
-        query += value;
-        continue;
-      }
-
-      if (Array.isArray(value)) {
-        if (value.length === 0) {
-          throw new Error(
-            `Expression ${index} in this sql tagged template is a function which returned an empty array. Empty arrays cannot safely be expanded into parameter lists.`,
-          );
-        }
-
-        query += value.map(() => "?").join(", ");
-        parameters.push(...value);
-        continue;
-      }
-
-      throw new Error(
-        `Expression ${index} in this sql tagged template is a function which returned a value of type "${value === null ? "null" : typeof value}". Only array and string types are supported as function return values in sql tagged template expressions.`,
-      );
-    }
-
-    query += "?";
-    parameters.push(expression);
-  }
-
-  query += fragment.strings[fragment.strings.length - 1];
-
-  return { query, parameters };
-}
+import { toQuery, type Connection, type SqlFragment } from "../api/index.js";
 
 export class SequelizeConnection implements Connection {
   #closed = false;
@@ -78,7 +28,7 @@ export class SequelizeConnection implements Connection {
 
   async query(fragment: SqlFragment): Promise<Record<string, unknown>[]> {
     this.assertOpen();
-    const { query, parameters } = buildSequelizeSqlTag(fragment);
+    const { sql: query, params: parameters } = toQuery(fragment);
     return await this.sequelize.query(query, {
       replacements: parameters,
       raw: true,
@@ -89,7 +39,7 @@ export class SequelizeConnection implements Connection {
 
   async update(fragment: SqlFragment): Promise<number> {
     this.assertOpen();
-    const { query, parameters } = buildSequelizeSqlTag(fragment);
+    const { sql: query, params: parameters } = toQuery(fragment);
     const result = await this.sequelize.query(query, {
       replacements: parameters,
       transaction: this.transaction,

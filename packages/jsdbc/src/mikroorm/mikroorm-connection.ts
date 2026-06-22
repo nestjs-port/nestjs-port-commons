@@ -15,7 +15,7 @@
  */
 
 import type { MikroORM } from "@mikro-orm/core";
-import type { Connection, SqlFragment } from "../api/index.js";
+import { toQuery, type Connection, type SqlFragment } from "../api/index.js";
 
 type MikroOrmEntityManager = MikroORM["em"] & {
   execute(
@@ -32,7 +32,7 @@ export class MikroOrmConnection implements Connection {
 
   async query(fragment: SqlFragment): Promise<Record<string, unknown>[]> {
     this.assertOpen();
-    const { query, parameters } = buildMikroOrmSqlTag(fragment);
+    const { sql: query, params: parameters } = toQuery(fragment);
     return this.executor.execute(query, parameters, "all") as Promise<
       Record<string, unknown>[]
     >;
@@ -40,7 +40,7 @@ export class MikroOrmConnection implements Connection {
 
   async update(fragment: SqlFragment): Promise<number> {
     this.assertOpen();
-    const { query, parameters } = buildMikroOrmSqlTag(fragment);
+    const { sql: query, params: parameters } = toQuery(fragment);
     const result = await this.executor.execute(query, parameters, "run");
     return extractAffectedRows(result);
   }
@@ -54,56 +54,6 @@ export class MikroOrmConnection implements Connection {
       throw new Error("Connection is already closed.");
     }
   }
-}
-
-function buildMikroOrmSqlTag(fragment: SqlFragment): {
-  query: string;
-  parameters: unknown[];
-} {
-  let query = "";
-  const parameters: unknown[] = [];
-
-  for (let index = 0; index < fragment.expressions.length; index++) {
-    query += fragment.strings[index];
-    const expression = fragment.expressions[index];
-
-    if (expression === null) {
-      query += "NULL";
-      continue;
-    }
-
-    if (typeof expression === "function") {
-      const value = expression();
-
-      if (typeof value === "string") {
-        query += value;
-        continue;
-      }
-
-      if (Array.isArray(value)) {
-        if (value.length === 0) {
-          throw new Error(
-            `Expression ${index} in this sql tagged template is a function which returned an empty array. Empty arrays cannot safely be expanded into parameter lists.`,
-          );
-        }
-
-        query += value.map(() => "?").join(", ");
-        parameters.push(...value);
-        continue;
-      }
-
-      throw new Error(
-        `Expression ${index} in this sql tagged template is a function which returned a value of type "${value === null ? "null" : typeof value}". Only array and string types are supported as function return values in sql tagged template expressions.`,
-      );
-    }
-
-    query += "?";
-    parameters.push(expression);
-  }
-
-  query += fragment.strings[fragment.strings.length - 1];
-
-  return { query, parameters };
 }
 
 function extractAffectedRows(result: unknown): number {

@@ -17,8 +17,25 @@
 export type { Connection } from "./connection.interface.js";
 export type { DataSource } from "./data-source.interface.js";
 export { DatabaseDialect } from "./database-dialect.enum.js";
-export type { SqlFragment } from "./sql-tag.js";
-export { sql, toSql } from "./sql-tag.js";
+export type {
+  Query,
+  SQLChunk,
+  SQLWrapper,
+  SqlFragment,
+  SqlTemplate,
+} from "./sql-tag.js";
+export {
+  Name,
+  Param,
+  Placeholder,
+  SQL,
+  StringChunk,
+  isSQLWrapper,
+  sql,
+  toQuery,
+  toSql,
+  toSqlTemplate,
+} from "./sql-tag.js";
 export {
   InjectJsdbcDataSource,
   InjectJsdbcTemplate,
