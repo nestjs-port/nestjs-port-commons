@@ -14,9 +14,18 @@
  * limitations under the License.
  */
 
-import { sql as drizzleSql, type SQL } from "drizzle-orm";
+import { sql as drizzleSql, type SQL as DrizzleSQL } from "drizzle-orm";
 
-import type { Connection, SqlFragment } from "../api/index.js";
+import {
+  isSQLWrapper,
+  Name,
+  Param,
+  Placeholder,
+  SQL,
+  StringChunk,
+  type Connection,
+  type SqlFragment,
+} from "../api/index.js";
 import type { DrizzleDatabase } from "./drizzle.js";
 
 export class DrizzleConnection implements Connection {
@@ -47,41 +56,79 @@ export class DrizzleConnection implements Connection {
   }
 }
 
-function toDrizzleSql(fragment: SqlFragment): SQL {
-  const expressions = fragment.expressions.map((expression, index) => {
-    if (expression === null) {
-      return drizzleSql.raw("NULL");
+function toDrizzleSql(fragment: SqlFragment): DrizzleSQL {
+  if (fragment instanceof SQL) {
+    return drizzleSql.join(fragment.queryChunks.map(toDrizzleSqlChunk));
+  }
+
+  if (fragment instanceof StringChunk) {
+    return drizzleSql.raw(stringifyStringChunk(fragment.value));
+  }
+
+  if (fragment instanceof Name) {
+    return drizzleSql.join([drizzleSql.identifier(fragment.value)]);
+  }
+
+  if (fragment instanceof Param) {
+    return drizzleSql.join([drizzleSql.param(fragment.value)]);
+  }
+
+  if (fragment instanceof Placeholder) {
+    return drizzleSql.join([drizzleSql.placeholder(fragment.name)]);
+  }
+
+  if (isSQLWrapper(fragment)) {
+    const nested = toDrizzleSql(fragment.getSQL());
+    if (fragment.shouldOmitSQLParens?.()) {
+      return nested;
     }
+    return drizzleSql.join([drizzleSql.raw("("), nested, drizzleSql.raw(")")]);
+  }
 
-    if (typeof expression === "function") {
-      const value = expression();
+  return toDrizzleSqlChunk(fragment);
+}
 
-      if (typeof value === "string") {
-        return drizzleSql.raw(value);
-      }
+function toDrizzleSqlChunk(chunk: unknown): DrizzleSQL {
+  if (chunk instanceof SQL || isSQLWrapper(chunk)) {
+    return toDrizzleSql(chunk as SqlFragment);
+  }
 
-      if (Array.isArray(value)) {
-        if (value.length === 0) {
-          throw new Error(
-            `Expression ${index} in this sql tagged template is a function which returned an empty array. Empty arrays cannot safely be expanded into parameter lists.`,
-          );
-        }
+  if (Array.isArray(chunk)) {
+    return drizzleSql.join(
+      chunk.map((item) => toDrizzleSqlChunk(item)),
+      drizzleSql.raw(", "),
+    );
+  }
 
-        return drizzleSql.join(
-          value.map((v) => drizzleSql`${v}`),
-          drizzleSql.raw(", "),
-        );
-      }
+  if (chunk instanceof StringChunk) {
+    return drizzleSql.raw(stringifyStringChunk(chunk.value));
+  }
 
-      throw new Error(
-        `Expression ${index} in this sql tagged template is a function which returned a value of type "${value === null ? "null" : typeof value}". Only array and string types are supported as function return values in sql tagged template expressions.`,
-      );
-    }
+  if (chunk instanceof Name) {
+    return drizzleSql.join([drizzleSql.identifier(chunk.value)]);
+  }
 
-    return expression;
-  });
+  if (chunk instanceof Param) {
+    return drizzleSql.join([drizzleSql.param(chunk.value)]);
+  }
 
-  return drizzleSql(fragment.strings, ...expressions);
+  if (chunk instanceof Placeholder) {
+    return drizzleSql.join([drizzleSql.placeholder(chunk.name)]);
+  }
+
+  if (typeof chunk === "string") {
+    return drizzleSql.join([drizzleSql.param(chunk)]);
+  }
+
+  return drizzleSql.join([drizzleSql.param(chunk)]);
+}
+
+function stringifyStringChunk(value: string | readonly string[]): string {
+  if (Array.isArray(value)) {
+    return value.join("");
+  }
+
+  return value as string;
 }
 
 export function extractRows(result: unknown): Record<string, unknown>[] {

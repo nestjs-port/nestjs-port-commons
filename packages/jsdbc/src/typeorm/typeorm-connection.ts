@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-import type { Driver } from "typeorm/driver/Driver.js";
 import type { QueryRunner } from "typeorm/query-runner/QueryRunner.js";
-import { buildSqlTag } from "typeorm/util/SqlTagUtils.js";
 
-import type { Connection, SqlFragment } from "../api/index.js";
+import {
+  toSqlTemplate,
+  type Connection,
+  type SqlFragment,
+} from "../api/index.js";
+import { buildSqlTag } from "typeorm/util/SqlTagUtils.js";
 
 export class TypeOrmConnection implements Connection {
   #closed = false;
@@ -27,10 +30,11 @@ export class TypeOrmConnection implements Connection {
 
   async query(fragment: SqlFragment): Promise<Record<string, unknown>[]> {
     this.assertOpen();
+    const { strings, expressions } = toSqlTemplate(fragment);
     const { query, parameters } = buildSqlTag({
-      driver: this.queryRunner.connection.driver as Driver,
-      strings: fragment.strings,
-      expressions: [...fragment.expressions],
+      driver: this.queryRunner.connection.driver,
+      strings,
+      expressions,
     });
     const result = await this.queryRunner.query(query, parameters, true);
     return result.records;
@@ -38,10 +42,11 @@ export class TypeOrmConnection implements Connection {
 
   async update(fragment: SqlFragment): Promise<number> {
     this.assertOpen();
+    const { strings, expressions } = toSqlTemplate(fragment);
     const { query, parameters } = buildSqlTag({
-      driver: this.queryRunner.connection.driver as Driver,
-      strings: fragment.strings,
-      expressions: [...fragment.expressions],
+      driver: this.queryRunner.connection.driver,
+      strings,
+      expressions,
     });
     const result = await this.queryRunner.query(query, parameters, true);
     return result.affected ?? 0;

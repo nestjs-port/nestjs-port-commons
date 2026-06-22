@@ -14,27 +14,35 @@
  * limitations under the License.
  */
 
-import type { Connection, SqlFragment } from "../api/index.js";
-import type { PrismaRawClient, PrismaRuntime, PrismaSql } from "./prisma.js";
+import {
+  toSqlTemplate,
+  type Connection,
+  type SqlFragment,
+} from "../api/index.js";
+import type { PrismaRawClient, PrismaRuntime } from "./prisma.js";
 
 export class PrismaConnection implements Connection {
   #closed = false;
 
   constructor(
     private readonly prisma: PrismaRawClient,
-    private readonly prismaRuntime: PrismaRuntime,
+    private readonly _prismaRuntime: PrismaRuntime,
   ) {}
 
   async query(fragment: SqlFragment): Promise<Record<string, unknown>[]> {
     this.assertOpen();
+    const { strings, expressions } = toSqlTemplate(fragment);
     return this.prisma.$queryRaw<Record<string, unknown>[]>(
-      this.toPrismaSql(fragment),
+      this._prismaRuntime.sql(strings, ...expressions),
     );
   }
 
   async update(fragment: SqlFragment): Promise<number> {
     this.assertOpen();
-    return this.prisma.$executeRaw(this.toPrismaSql(fragment));
+    const { strings, expressions } = toSqlTemplate(fragment);
+    return this.prisma.$executeRaw(
+      this._prismaRuntime.sql(strings, ...expressions),
+    );
   }
 
   async close(): Promise<void> {
@@ -45,39 +53,5 @@ export class PrismaConnection implements Connection {
     if (this.#closed) {
       throw new Error("Connection is already closed.");
     }
-  }
-
-  private toPrismaSql(fragment: SqlFragment): PrismaSql {
-    const expressions = fragment.expressions.map((expression, index) => {
-      if (expression === null) {
-        return this.prismaRuntime.raw("NULL");
-      }
-
-      if (typeof expression === "function") {
-        const value = expression();
-
-        if (typeof value === "string") {
-          return this.prismaRuntime.raw(value);
-        }
-
-        if (Array.isArray(value)) {
-          if (value.length === 0) {
-            throw new Error(
-              `Expression ${index} in this sql tagged template is a function which returned an empty array. Empty arrays cannot safely be expanded into parameter lists.`,
-            );
-          }
-
-          return this.prismaRuntime.join(value);
-        }
-
-        throw new Error(
-          `Expression ${index} in this sql tagged template is a function which returned a value of type "${value === null ? "null" : typeof value}". Only array and string types are supported as function return values in sql tagged template expressions.`,
-        );
-      }
-
-      return expression;
-    });
-
-    return this.prismaRuntime.sql(fragment.strings, ...expressions);
   }
 }
