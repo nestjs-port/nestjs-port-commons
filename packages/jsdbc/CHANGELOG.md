@@ -1,5 +1,11 @@
 # @nestjs-port/jsdbc
 
+## 0.1.1
+
+### Patch Changes
+
+- 0ae369a: Added a Drizzle-style SQL AST to jsdbc
+
 ## 0.1.0
 
 ### Minor Changes
